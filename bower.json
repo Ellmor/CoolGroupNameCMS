@@ -1,10 +1,10 @@
 {
   "name": "coolgroupnamecms",
-  "description": "",
+  "description": "Frameworks 2016 Mandatory Exercise",
   "main": "app.js",
   "license": "ISC",
   "moduleType": [],
-  "homepage": "",
+  "homepage": "http://example.com/",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -12,5 +12,8 @@
     "test",
     "tests"
   ],
-  "private": true
+  "private": true,
+  "authors": [
+    "Piotr Suski", "Liga Daine"
+  ]
 }
