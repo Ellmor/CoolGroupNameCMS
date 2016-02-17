@@ -19,15 +19,15 @@ var mongodb = mongoose.connection;
  });
 
 //ROUTE FILES
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var auth = require('./routes/auth')();
+var routes = require('./src/routes/index');
+var users = require('./src/routes/users');
+var auth = require('./src/routes/auth')();
 
 //APP
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'jade');
 
 
@@ -45,7 +45,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-require('./config/passport')(app);
+require('./src/config/passport')(app);
 
 
 app.use(cookieParser());
@@ -86,6 +86,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
