@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title></title>
+    <!--link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')-->
+    <!--link(rel='stylesheet', href='/stylesheets/style.css')-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1></h1>
+        <p>Welcome to  what ?</p>
+      </div>
+      <div class="row">
+        <h2>signup</h2>
+        <form name="signUpForm" action="/auth/signUp" method="POST">
+          <div class="form-group">
+            <input id="name" type="text" name="name" placeholder="Name" class="form-control">
+          </div>
+          <div class="form-group">
+            <input id="password" type="text" name="password" placeholder="Password" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-default">SignUp</button>
+        </form>
+        <h2>login
+          <form name="logInForm" action="/auth/logIn" method="POST">
+            <div class="form-group">
+              <input id="name" type="text" name="name" placeholder="Name" class="form-control">
+            </div>
+            <div class="form-group">
+              <input id="password" type="text" name="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">Login</button>
+          </form>
+        </h2>
+      </div>
+    </div>
+  </body>
+</html>
