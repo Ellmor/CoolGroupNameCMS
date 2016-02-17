@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} what ?
+    .container
+        .row
+            h1= title
+            p Welcome to #{title} what ?
+        .row
+            h2 Login
+            form(name='signUpForm' action='/auth/signUp' method='POST')
+                .form-group
+                    input#name.form-control(type="text" name="name" placeholder="Name")
+                .form-group
+                    input#password.form-control(type="text" name="password" placeholder="Password")
+                button.btn.btn-default(type="submit") Login
