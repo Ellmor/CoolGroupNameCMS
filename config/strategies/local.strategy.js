@@ -1,5 +1,6 @@
-var passport =  require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+var passport =      require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    User =          require('../../models/user');
 
 module.exports = function(){
     passport.use(new LocalStrategy({
@@ -7,10 +8,14 @@ module.exports = function(){
         passwordField: 'password'
     },
     function(username, password, done){
-        var user = {
-            username: username,
-            password:  password
-        };
-        done(null, user);
+        User.findOne({username: username}, function(err, results){
+            if(results.password == password){
+                var user = results;
+                done(null, user);
+            } else {
+                done(null, false, 'error');
+            }
+
+        });
     }));
 }
