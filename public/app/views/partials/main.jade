@@ -1,0 +1,23 @@
+h3 {{main.title}}
+.container
+    .row
+        h1= title
+        p Welcome to #{title} what ?
+        a(href="/profile") GO TO PROFILE
+    .row
+        h2 signup
+        form(name='signUpForm' ng-submit="main.signUp()" )
+            .form-group
+                input#name.form-control(type="text" name="name" placeholder="Name" ng-model="main.name")
+            .form-group
+                input#password.form-control(type="text" name="password" placeholder="Password" ng-model="main.password")
+            button.btn.btn-default(type="submit") SignUp
+        h2 login
+            form(name='logInForm' ng-submit="main.logIn()")
+                .form-group
+                    input#name.form-control(type="text" name="name" placeholder="Name" ng-model="main.name")
+                .form-group
+                    input#password.form-control(type="text" name="password" placeholder="Password" ng-model="main.password")
+                button.btn.btn-default(type="submit") Login
+    //action='/auth/signUp' method='POST'
+    //action='/auth/logIn' method='POST'

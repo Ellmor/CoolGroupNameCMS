@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body ng-controller="MainCtrl as main">
+
+<h1>{{main.title}}</h1>
+<div ng-view> LOADING ...</div>
+<a href="/profile">PROFILE</a>
+<a href="/test">TEST</a>
+<p>My first paragraph.</p>
+    <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js"></script>
+
+    <script src="../app.module.js"></script>
+    <script src="app.controller.js"></script>
+
+</body>
+</html>

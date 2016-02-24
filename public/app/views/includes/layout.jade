@@ -1,0 +1,17 @@
+doctype html
+html(ng-app="app")
+  head
+    base(href="/")
+    title= title
+    //link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    //link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block main-content
+
+    script(src="https://code.angularjs.org/1.5.0/angular.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js")
+    script(src="app.module.js")
+    script(src="app/app.routing.js")
+    script(src="app/app.service.js")
+    script(src="app/app.controller.js")

@@ -4,7 +4,9 @@ var passport = require('passport');
 var User = require('../models/user');
 
 var authRouter = express.Router();
+
 var router = function() {
+    console.log('AUTH ROUTER');
     authRouter.route('/signUp')
         .post(function(req, res) {
             console.log('Sign Up Route');
@@ -17,7 +19,8 @@ var router = function() {
 
             user.save(function(err){
                     req.login(user, function(){
-                        res.redirect('/auth/profile')
+                        //res.redirect('/auth/profile')
+                        res.json(req.user);
                     });
                 });
             console.log(user);
@@ -27,7 +30,10 @@ var router = function() {
         .post(passport.authenticate('local', {
             failureRedirect: '/'
         }), function(req, res){
-            res.redirect('/auth/profile');
+            //res.redirect('/auth/profile');
+            console.log(req);
+            console.log(res);
+            res.json(req.user);
         });
 
     authRouter.route('/profile')
