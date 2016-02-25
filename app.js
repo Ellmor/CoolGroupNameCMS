@@ -8,12 +8,15 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 
+
 //MONGO DB CONNECTION
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/CoolGroupProjectDB');
 var mongodb = mongoose.connection;
+
 //error
 mongodb.on('error', console.error.bind(console, 'connection error'));
+
 //open event (listen once)
 mongodb.on('open', function callback() {
     console.log('CoolGroupNameCMSAppDB opened');
@@ -28,7 +31,7 @@ var auth = require('./src/routes/auth')();
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/src/views'));
+app.set('views', path.join(__dirname, '/public/views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -51,6 +54,7 @@ require('./src/config/passport')(app);
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public/views'));
 
 //ROUTE SETUP
 app.use('/', routes);
