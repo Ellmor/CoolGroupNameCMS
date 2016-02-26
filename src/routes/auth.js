@@ -1,10 +1,11 @@
 var express = require('express');
 var passport = require('passport');
-
 var User = require('../models/user');
-
 var authRouter = express.Router();
+
 var router = function() {
+
+
     authRouter.route('/signUp')
         .post(function(req, res) {
             console.log('Sign Up Route');

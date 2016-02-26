@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .container
+        .row
+            h1= title
+            p Welcome to #{title} what ?
+        .row
+            h2 signup
+            form(name='signUpForm' action='/auth/signUp' method='POST')
+                .form-group
+                    input#name.form-control(type="text" name="name" placeholder="Name")
+                .form-group
+                    input#password.form-control(type="text" name="password" placeholder="Password")
+                button.btn.btn-default(type="submit") SignUp
+            h2 login
+                form(name='logInForm' action='/auth/logIn' method='POST')
+                    .form-group
+                        input#name.form-control(type="text" name="name" placeholder="Name")
+                    .form-group
+                        input#password.form-control(type="text" name="password" placeholder="Password")
+                    button.btn.btn-default(type="submit") Login

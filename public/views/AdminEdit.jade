@@ -1,0 +1,27 @@
+doctype html
+html(ng-app="main")
+    head
+        base(href="/")
+        title= title
+        link(rel='stylesheet', href='./lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', href='./lib/bootstrap/dist/css/bootstrap-theme.css')
+        link(rel='stylesheet', href='./stylesheets/style.css')
+
+    body(ng-controller="userController")
+        div.container
+        include partials/main_menu
+
+    .container
+        .row
+            form(ng-init="getUser('" + userid + "')")
+                div.form-group
+                    label(for="name") Username
+                        input#name.form-control(type="text", name="name", placeholder="Name", ng-model="User.username", autofocus)
+
+                div.form-group
+                    label(for="password") Password
+                        input#password.form-control(type="text", name="password", placeholder="Password", ng-model="User.password")
+
+                button.btn.btn-small.btn-primary(ng-click="updateUser(User)") Update User
+
+include scripts
