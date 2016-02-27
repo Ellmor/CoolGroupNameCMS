@@ -16,7 +16,6 @@
     "test",
     "tests"
   ],
-<<<<<<< HEAD
   "dependencies": {
     "jquery": "^2.2.1",
     "toastr": "^2.1.2",
@@ -24,7 +23,7 @@
     "angular-resource": "^1.5.0",
     "angular-route": "^1.5.0",
     "bootstrap": "^3.3.6"
-=======
+  },
   "private": true,
   "authors": [
     "Piotr Suski",
@@ -32,6 +31,5 @@
   ],
   "devDependencies": {
     "angular": "^1.5.0"
->>>>>>> 7d39f53d5af8d202574d257309697b046c412cd2
   }
 }
