@@ -1,1 +1,6 @@
-angular.module('app', ['ngResource', 'ngRoute']);
+(function () {
+    'use strict';
+    angular
+        .module('app', ['ngResource',
+                        'ngRoute']);
+})()
