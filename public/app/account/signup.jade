@@ -1,0 +1,15 @@
+//
+   Created by Liga on 27-02-2016.
+
+.container(ng-controller="userController")
+    .row
+        form
+            div.form-group
+                label(for="name") Username
+                    input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus)
+
+            div.form-group
+                label(for="password") Password
+                    input#password.form-control(type="text", name="password", placeholder="Password", ng-model="user.password")
+
+            button.btn.btn-small.btn-primary(ng-click="createUser(user)") Create User

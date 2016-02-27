@@ -2,8 +2,11 @@
     angular.module('app')
         .controller('mvMainCtrl', mvMainCtrl);
 
-    function mvMainCtrl ($scope) {
-        $scope.myVar = "Hello Angular";
+    function mvMainCtrl ($scope, helperService) {
+        var vm = this;
+
+        vm.isActive = helperService.isActive;
+
     }
 
 })()

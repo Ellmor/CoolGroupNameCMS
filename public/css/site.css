@@ -25,3 +25,8 @@ footer p {
 .toast-success{
     background-color: #13987e;
 }
+
+.btn-is-disabled {
+    pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+    opacity: 0.5;
+}

@@ -4,7 +4,9 @@
         .module('app')
         .controller('mvNavBarLoginCtrl', mvNavBarLoginCtrl);
 
-    function mvNavBarLoginCtrl($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
+    function mvNavBarLoginCtrl($scope, $http, mvIdentity, mvNotifier, mvAuth, $location, helperService) {
+        var vm = this;
+
         $scope.identity = mvIdentity;
         $scope.signin = function (username, password) {
             mvAuth.authenticateUser(username, password).then(function (success) {
@@ -23,6 +25,8 @@
                 $location.path('/');
             })
         }
+
+        vm.isActive = helperService.isActive;
     }
 
 })()

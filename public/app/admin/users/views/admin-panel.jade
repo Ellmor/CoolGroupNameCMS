@@ -1,0 +1,35 @@
+.container(ng-controller='userController')
+    .row
+        h1 Admin Panel with CRUD functionality
+
+        table.table.table-bordered(ng-model="Users", ng-init="getUsers()")
+            thead
+                th _Id
+                th Name
+                th UserName
+                th Password
+                th Update
+                th Delete
+            tbody
+                tr( ng-repeat="user in Users")
+                    td {{user._id}}
+                    td {{user.firstName + " " + lastName}}
+                    td {{user.username}}
+                    td {{user.hashed_pwd}}
+                    td
+                        a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
+                    td
+                        button.btn.btn-danger.btn-block(ng-click="deleteUser(user._id)") Delete
+
+        h2 Create user
+
+        form
+            div.form-group
+                label(for="name") Username
+                    input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus)
+
+            div.form-group
+                label(for="password") Password
+                    input.form-control(type="password", id="password", name="password", placeholder="Password", ng-model="user.password")
+
+            button.btn.btn-small.btn-warning( ng-click="createUser(user)") Create User

@@ -16,7 +16,7 @@ module.exports = function (app) {
     var users = require('./api/user.api');
 
     //ROUTE SETUP
-    app.use('/users/', users);
+    app.use('/api/users/', users);
 
     app.get('*', function (req, res) {
         res.render('index', {

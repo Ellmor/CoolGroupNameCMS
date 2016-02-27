@@ -1,27 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/user');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
+var service = require('../service');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     User.find(function (err, results){res.json(results);});
-
 });
 /*Create user*/
 router.route('/').post(function(req, res){
-    mongoose.createConnection('localhost', 'CoolGroupProjectDB');
-    var user = {
-        username: req.body.username,
-        password: req.body.password
-    };
+
+    //checking for errors
     if( typeof req.body.username ==="undefined" || typeof req.body.password === "undefined"){
+        //return error
         res.json({message: "Error"})
     }
-    else{
+    else { //if values are valid
+        //hashing password
+        var salt = service.createSalt();
+        var hash = service.hashPwd(salt, req.body.password);
+
+        //creating user object, based on which mongo User can be created
+        var user = {
+            firstName: "test",
+            lastName:  "test",
+            username: req.body.username,
+            salt: salt,
+            hashed_pwd: hash,
+            roles: ["user"]
+        };
+
+        //creating passing object to mongoose shema
         var newUser = new User(user);
+
+        //saving user to database
         newUser.save(function(err, user){
-            if(err) res.json({message:"Error"});
+            if(err) {res.json({message:"Error"});}
+            console.log(user);
             res.json(user)
         });
     }
@@ -40,8 +56,12 @@ router.put('/:userid', function(req,res,next){
     User.findById(userid, function(err,user){
         if(err) res.json({message:"Error"})
 
+        var salt = service.createSalt();
+        var hash = service.hashPwd(salt, req.body.password);
+
         user.username = req.body.username;
-        user.password = req.body.password;
+        user.hashed_pwd = hash;
+        user.salt = salt;
 
         user.save(function(err){
             if(err) res.json({message:"Error"});
@@ -55,7 +75,6 @@ router.delete('/:userid', function(req,res,next){
     var userid = req.params.userid;
     User.remove({_id:userid}, function (err){
             if(err)res.json({message:"Error"});
-
         }
     );
 });
