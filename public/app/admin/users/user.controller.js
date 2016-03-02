@@ -1,49 +1,50 @@
-(function(){
+(function () {
     "use strict";
 
     angular
         .module('app')
         .controller('userController', userController);
 
-    function userController($scope, userService, helperService, $routeParams){
+    function userController($scope, userService, helperService, $routeParams) {
         var vm = this;
 
-        if($routeParams.userId){
-           vm.userId = $routeParams.userId;
+        if ($routeParams.userId) {
+            vm.userId = $routeParams.userId;
         }
 
-        var modelUsers = function(data){
+        var modelUsers = function (data) {
             console.log(data);
             $scope.Users = data;
         }
 
-        var modelUser = function(data){
+        var modelUser = function (data) {
             $scope.User = data;
         }
 
-        $scope.getUsers = function(){
+        $scope.getUsers = function () {
             userService.getUsers()
                 .then(modelUsers);
         }
 
-        $scope.getUser = function(userid){
+        $scope.getUser = function (userid) {
             userService.getUser(userid)
                 .then(modelUser);
         }
 
-        $scope.createUser = function(user){
+        $scope.createUser = function (user) {
             userService.createUser(user);
             userService.getUsers()
                 .then(modelUsers);
         }
 
-        $scope.updateUser = function(user){
+        $scope.updateUser = function (user) {
             console.log(user);
             userService.updateUser(user);
             userService.getUser(user.userid)
                 .then(modelUser);
         }
-        $scope.deleteUser = function(userid){
+
+        $scope.deleteUser = function (userid) {
             userService.deleteUser(userid);
             userService.getUsers()
                 .then(modelUsers);
