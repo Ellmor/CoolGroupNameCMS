@@ -3,7 +3,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    passport = require('passport');
+    passport = require('passport'),
+    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function (app, config) {
     app.set('views', config.rootPath + "/server/views");

@@ -4,6 +4,14 @@ var passport = require('passport'),
 
 var User = mongoose.model('User');
 
+passport.use(new GoogleStrategy({
+        clientID: '1035851092543-krqf06ld6a1d83uvbar4cibi673c30md.apps.googleusercontent.com',
+        clientSecret: 'jIZ7rvfc4AnnB5SgG8CGvlJq',
+        callbackURL: 'http://localhost:3000/auth/google/callback'},
+        function (req, accessToken, refreshToken, profile, done) {
+            done(null, profile);
+}));
+
 module.exports = function () {
     passport.use(new LocalStrategy(
         function (username, password, done) {
