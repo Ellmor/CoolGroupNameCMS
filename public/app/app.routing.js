@@ -31,6 +31,12 @@
                 templateUrl: '/partials/admin/users/views/admin-edit',
                 controller: 'userController',
                 controllerAs: 'vm'
-            });
+            })
+            .when('/dashboard', {
+                templateUrl: '/partials/admin/dashboard/dashboard',
+                controller: 'dashboardController',
+                controllerAs: 'db'
+            })
+            .otherwise({ redirectTo: '/' });
     }
 })()

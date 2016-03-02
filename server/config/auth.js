@@ -3,21 +3,14 @@ var passport = require('passport');
 
 var auth = require('/auth');
 var express = require('express');
-var router = express.Router;
 
-router.route('/google/callback')
-    .get(passport.authenticate('google', {
+exports.googleAuthenticate = function(req, res, next) {
+    passport.authenticate('google', {
         successRedirect: '/api/users/',
         failure: '/error'
-    }));
+    })(req, res, next);
+};
 
-route.route('/google')
-    .get(passport.authenticate('google', {
-        scope: ['https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email']
-    }));
-
-module.exports = router;
 
 exports.authenticate  = function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -28,4 +21,4 @@ exports.authenticate  = function(req, res, next) {
             return res.send({success:true, user:user});
         });
     })(req, res, next);
-}
+};

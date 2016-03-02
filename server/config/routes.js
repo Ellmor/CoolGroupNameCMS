@@ -1,4 +1,8 @@
+var auth = required('./auth');
+//var router = express.Router;
 
+// defines the path to the view files - partials is considered /public/app/
+// also, renders jade into HTML
 module.exports = function (app) {
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
@@ -11,6 +15,14 @@ module.exports = function (app) {
         res.end();
     });
 
+    app.get('/google/callback', auth.googleAuthenticate);
+
+    route.route('/google')
+        .get(passport.authenticate('google', {
+            scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email']
+        }));
+
     //ROUTE FILES
     var users = require('./api/user.api');
 
@@ -22,4 +34,4 @@ module.exports = function (app) {
             bootstrappedUser: req.user
         });
     });
-}
+};

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/user');
-//var mongoose = require('mongoose');
 var service = require('../service');
 
 /* GET users listing. */
@@ -78,5 +77,6 @@ router.delete('/:userid', function(req,res,next){
         }
     );
 });
+
 
 module.exports = router;
