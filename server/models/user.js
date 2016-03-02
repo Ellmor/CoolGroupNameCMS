@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    service = require('../config/service');
+    service = require('../config/services/auth.service');
 
 var userSchema = mongoose.Schema({
     firstName: String,

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/user');
-//var mongoose = require('mongoose');
-var service = require('../service');
+var service = require('../services/auth.service');
+var userService = require('../services/user.service');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -16,29 +16,16 @@ router.route('/').post(function(req, res){
         //return error
         res.json({message: "Error"})
     }
+    
     else { //if values are valid
-        //hashing password
-        var salt = service.createSalt();
-        var hash = service.hashPwd(salt, req.body.password);
-
-        //creating user object, based on which mongo User can be created
-        var user = {
-            firstName: "test",
-            lastName:  "test",
-            username: req.body.username,
-            salt: salt,
-            hashed_pwd: hash,
-            roles: ["user"]
-        };
-
-        //creating passing object to mongoose shema
-        var newUser = new User(user);
-
-        //saving user to database
-        newUser.save(function(err, user){
-            if(err) {res.json({message:"Error"});}
-            console.log(user);
-            res.json(user)
+        userService.createUser(req.body, function(response){
+            console.log(response);
+            if(response.success) {
+                res.json(response.data)
+            }
+            else {
+                res.json({message: response.message});
+            }
         });
     }
 });
@@ -51,22 +38,14 @@ router.get('/:userid', function(req,res, next){
 /*Update user*/
 
 router.put('/:userid', function(req,res,next){
-    var userid = req.params.userid;
 
-    User.findById(userid, function(err,user){
-        if(err) res.json({message:"Error"})
-
-        var salt = service.createSalt();
-        var hash = service.hashPwd(salt, req.body.password);
-
-        user.username = req.body.username;
-        user.hashed_pwd = hash;
-        user.salt = salt;
-
-        user.save(function(err){
-            if(err) res.json({message:"Error"});
-            res.send(user);
-        });
+    userService.updateUser(req.params.userid, req.body, function(response){
+        console.log(response);
+        if(response.success) {
+            res.send(response.data);
+        } else {
+            res.json({message: response.message});
+        }
     });
 });
 

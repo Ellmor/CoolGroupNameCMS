@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    service = require('./service'),
+    service = require('./services/auth.service'),
     User = require('../models/user');
 
 module.exports = function (config) {
