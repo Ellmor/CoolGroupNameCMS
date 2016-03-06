@@ -1,10 +1,12 @@
-var passport = require('passport'),
-    mongoose = require('mongoose'),
-    LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
 
-var User = mongoose.model('User');
+require('./strategies/local.strategy')();
+require('./strategies/google.strategy')();
+
+var User = require('../models/user.js');
 
 module.exports = function () {
+    /*
     passport.use(new LocalStrategy(
         function (username, password, done) {
             console.log("DEBUG: looking for user in mongo");
@@ -19,6 +21,7 @@ module.exports = function () {
             });
         }
     ));
+    */
 
     passport.serializeUser(function (user, done) {
         if (user) {

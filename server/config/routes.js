@@ -1,9 +1,16 @@
 var auth = require('./auth');
+var users = require('./api/user.api');
 
 module.exports = function (app) {
+
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
     });
+
+
+    app.get('/oauth/google', auth.googleAuthenticate);
+
+    app.get('/oauth/google/callback', auth.googleAuthenticateCallback);
 
     app.post('/login', auth.authenticate);
 
@@ -12,10 +19,6 @@ module.exports = function (app) {
         res.end();
     });
 
-    //ROUTE FILES
-    var users = require('./api/user.api');
-
-    //ROUTE SETUP
     app.use('/api/users/', users);
 
     app.get('*', function (req, res) {
