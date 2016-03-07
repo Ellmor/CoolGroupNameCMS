@@ -1,4 +1,5 @@
 var auth = require('./auth');
+var users = require('./api/user.api');
 
 module.exports = function (app) {
     app.get('/partials/*', function (req, res) {
@@ -12,8 +13,10 @@ module.exports = function (app) {
         res.end();
     });
 
-    //ROUTE FILES
-    var users = require('./api/user.api');
+    //Twitter OAuth
+    app.get('/oauth/twitter', auth.twitterAuthenticate);
+    app.get('/twitter/callback', auth.twitterAuthenticateCallback);
+
 
     //ROUTE SETUP
     app.use('/api/users/', users);

@@ -28,7 +28,7 @@ module.exports.createUser = function createUser(userModel, callback) {
             callback({success: true, message: "Success", data: user});
         }
     });
-}
+};
 
 module.exports.updateUser = function updateUser(userId, userModel, callback) {
 
@@ -50,6 +50,41 @@ module.exports.updateUser = function updateUser(userId, userModel, callback) {
             }
         });
     });
-}
+};
+
+module.exports.saveOAuthUserProfile = function(req, profile, done) {
+    console.log("TEST");
+    User.findOne({
+        provider: profile.provider,
+        providerId: profile.providerId
+    }, function(err, user) {
+        if (err) {
+            return done(err);
+        } else {
+            if (!user) {
+                var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+
+                User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
+                    profile.username = availableUsername;
+
+                    user = new User(profile);
+
+                    user.save(function(err) {
+                        if (err) {
+                            var message = _this.getErrorMessage(err);
+
+                            req.flash('error', message);
+                            return res.redirect('/signup');
+                        }
+
+                        return done(err, user);
+                    });
+                });
+            } else {
+                return done(err, user);
+            }
+        }
+    });
+};
 
 

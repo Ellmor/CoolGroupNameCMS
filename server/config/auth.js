@@ -1,4 +1,3 @@
-
 var passport = require('passport');
 
 exports.authenticate  = function(req, res, next) {
@@ -10,4 +9,17 @@ exports.authenticate  = function(req, res, next) {
             return res.send({success:true, user:user});
         });
     })(req, res, next);
-}
+};
+
+//Twitter OAuth
+exports.twitterAuthenticate  = function(req, res, next) {
+    passport.authenticate('twitter', {
+        failureRedirect: '/signin'
+    })(req, res, next);
+};
+exports.twitterAuthenticateCallback  = function(req, res, next) {
+    passport.authenticate('twitter', {
+        failureRedirect: '/signin',
+        successRedirect: '/admin'
+    })(req, res, next);
+};

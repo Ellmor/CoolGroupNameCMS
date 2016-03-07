@@ -1,24 +1,11 @@
-var passport = require('passport'),
-    mongoose = require('mongoose'),
-    LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
 
-var User = mongoose.model('User');
+require('./strategies/local.strategy')();
+require('./strategies/twitter.strategy')();
+
+var User = require('../models/user.js')
 
 module.exports = function () {
-    passport.use(new LocalStrategy(
-        function (username, password, done) {
-            console.log("DEBUG: looking for user in mongo");
-            User.findOne({username: username}).exec(function (err, user) {
-                if (user && user.authenticate(password)) {
-                    console.log("DEBUG: user found");
-                    return done(null, user);
-                } else {
-                    console.log("DEBUG: user not found");
-                    return done(null, false);
-                }
-            });
-        }
-    ));
 
     passport.serializeUser(function (user, done) {
         if (user) {
@@ -35,4 +22,4 @@ module.exports = function () {
             }
         });
     });
-}
+};
