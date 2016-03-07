@@ -18,8 +18,10 @@ exports.twitterAuthenticate  = function(req, res, next) {
     })(req, res, next);
 };
 exports.twitterAuthenticateCallback  = function(req, res, next) {
+    console.log(req);
+    console.log(req);
     passport.authenticate('twitter', {
         failureRedirect: '/signin',
-        successRedirect: '/admin'
+        successRedirect: '/commentator/profile'
     })(req, res, next);
 };

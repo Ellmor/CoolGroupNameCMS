@@ -31,6 +31,11 @@
                 templateUrl: '/partials/admin/users/views/admin-edit',
                 controller: 'userController',
                 controllerAs: 'vm'
+            })
+            .when('/commentator/profile', {
+                templateUrl: '/partials/commentator/commentator-profile',
+                controller: 'commentatorController',
+                controllerAs: 'vm'
             });
     }
 })()
