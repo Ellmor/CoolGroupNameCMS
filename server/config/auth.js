@@ -23,3 +23,16 @@ exports.twitterAuthenticateCallback  = function(req, res, next) {
         successRedirect: '/admin'
     })(req, res, next);
 };
+
+//Facebook Auth
+exports.facebookAuthenticate  = function(req, res, next) {
+    passport.authenticate('facebook', {
+            scope: ['email']
+    })(req, res, next);
+};
+exports.facebookAuthenticateCallback  = function(req, res, next) {
+    passport.authenticate('facebook', {
+        failureRedirect: '/signin',
+        successRedirect: '/admin'
+    })(req, res, next);
+};
