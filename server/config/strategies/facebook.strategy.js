@@ -10,8 +10,8 @@ var passport = require('passport'),
 module.exports = function() {
     passport.use(new FacebookStrategy({
 
-            consumerKey: config.development.facebook.clientID,
-            consumerSecret: config.development.facebook.clientSecret,
+            clientID: config.development.facebook.clientID,
+            clientSecret: config.development.facebook.clientSecret,
             callbackURL: config.development.facebook.callbackURL,
             passReqToCallback: true
         },
@@ -23,14 +23,14 @@ module.exports = function() {
 
             var providerUserProfile = {
 
-                fullName: profile.displayName,
-                email: profile.emails[0].value,
-                username: profile.username,
+                //fullName: profile.displayName,
+                //email: profile.emails,
+                username: profile.displayName,
                 provider: 'facebook',
                 providerId: profile.id,
                 providerData: providerData
             };
-
+console.log(providerUserProfile);
             //Saving the user to mongodb
             //Function can be found in user.service.js
             users.saveOAuthUserProfile(req, providerUserProfile, done);
