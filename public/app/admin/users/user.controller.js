@@ -5,7 +5,7 @@
         .module('app')
         .controller('userController', userController);
 
-    function userController($scope, userService, helperService, $routeParams) {
+    function userController($scope, userService, mvNotifier, helperService, $routeParams) {
         var vm = this;
 
         if ($routeParams.userId) {
@@ -45,9 +45,22 @@
         }
 
         $scope.deleteUser = function (userid) {
-            userService.deleteUser(userid);
-            userService.getUsers()
-                .then(modelUsers);
+            userService.deleteUser(userid).then(
+                function(responce){
+                    //if the user was deleted
+                    if(responce.success){
+                        //notify thet the user was deleted
+                        mvNotifier.notify(responce.message);
+                        //get the new list of users and add it to the scope.
+                        userService.getUsers()
+                            .then(modelUsers);
+                    //otherwise show error message and do nothing.
+                    } else {
+                        mvNotifier.notify(responce.message);
+                    }
+                }
+            );
+
         }
 
     }

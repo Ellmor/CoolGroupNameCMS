@@ -53,7 +53,13 @@ router.put('/:userid', function(req,res,next){
 router.delete('/:userid', function(req,res,next){
     var userid = req.params.userid;
     User.remove({_id:userid}, function (err){
-            if(err)res.json({message:"Error"});
+            if(err) {
+                //if there is an error return error message
+                res.json({success:false, message:"Error", details: err});
+            } else {
+                //else return confirmation that the user was deleted
+                res.json({success:true, message: "The user " +req.params.userid+" was deleted"});
+            };
         }
     );
 });
