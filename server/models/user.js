@@ -8,8 +8,8 @@ var userSchema = mongoose.Schema({
     salt: String,
     hashed_pwd: String,
     roles: [String],
-    provider: String,
-    providerId: String
+    provider: String, //for OAuth identification
+    providerId: String //for OAuth identification
 });
 
 userSchema.methods = {
@@ -18,6 +18,7 @@ userSchema.methods = {
     }
 };
 
+//static method created for OAuth functionality
 userSchema.statics = {
     findUniqueUsername: function(username, suffix, callback) {
         var _this = this;

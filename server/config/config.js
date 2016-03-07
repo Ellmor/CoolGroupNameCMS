@@ -2,6 +2,8 @@ var path = require('path');
 
 var rootPath = path.normalize(__dirname + '/../../');
 
+
+//ports. Brought outside of object, because these values are repeated
 var devPort = process.env.PORT || 3030;
 var prodPort = process.env.PORT || 80;
 

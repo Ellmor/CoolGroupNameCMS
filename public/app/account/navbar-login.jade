@@ -5,6 +5,8 @@
         .form-group
             input.form-control(type="password", placeholder="Password", ng-model="password")
         button.btn.btn-primary(ng-click="signin(username,password)") Sign in
+        //OAuth is called directly. target="_self" makes sure that the server is targeted directly.
+        //(without this Angular Routing takes over)
         a.btn.btn-primary(target="_self" href="/oauth/twitter" rolenodemon ="button") Twitter
         a.btn.btn-primary(href="/signup" role="button" ng-hide="navVM.isActive('/signup')") New User
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")

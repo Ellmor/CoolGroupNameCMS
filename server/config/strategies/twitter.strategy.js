@@ -7,7 +7,6 @@ var passport = require('passport'),
     users = require('../services/user.service');
 
 module.exports = function() {
-    console.log("TWITTER STRATEGY");
     passport.use(new TwitterStrategy({
             consumerKey: config.development.twitter.clientID,
             consumerSecret: config.development.twitter.clientSecret,
@@ -15,7 +14,6 @@ module.exports = function() {
             passReqToCallback: true
         },
         function(req, token, tokenSecret, profile, done) {
-            console.log("TWITTER STRATEGY FUNCTION");
             var providerData = profile._json;
             providerData.token = token;
             providerData.tokenSecret = tokenSecret;
@@ -28,6 +26,8 @@ module.exports = function() {
                 providerData: providerData
             };
 
+            //Saving the user to mongodb
+            //Function can be found in user.service.js
             users.saveOAuthUserProfile(req, providerUserProfile, done);
         }));
 };

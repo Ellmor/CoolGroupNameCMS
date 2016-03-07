@@ -1,9 +1,10 @@
-var passport = require('passport');
+var passport = require('passport'),
+    User = require('../models/user.js')
 
+//Import Strategy files
 require('./strategies/local.strategy')();
 require('./strategies/twitter.strategy')();
 
-var User = require('../models/user.js')
 
 module.exports = function () {
 

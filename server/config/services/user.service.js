@@ -64,6 +64,8 @@ module.exports.saveOAuthUserProfile = function(req, profile, done) {
             if (!user) {
                 var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
 
+                //calling a static mongoose Shema method to save the user (more on this in MEAN Book).
+                //The function can be found in models/user.js
                 User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
                     profile.username = availableUsername;
 
