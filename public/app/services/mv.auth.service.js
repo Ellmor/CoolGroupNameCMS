@@ -27,6 +27,14 @@
                     dfd.resolve();
                 });
                 return dfd.promise;
+            },
+            authorizeCurrentUserForRoute: function (role) {
+                console.log('checkRole in mvAuth');
+                if(mvIdentity.isAuthorized(role)){
+                    return true;
+                } else {
+                    return $q.reject('not authorized');
+                }
             }
         }
     }

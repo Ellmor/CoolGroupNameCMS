@@ -12,6 +12,7 @@
             mvAuth.authenticateUser(username, password).then(function (success) {
                 if (success) {
                     mvNotifier.notify('You have successfully signed in!');
+                    $location.path('/backend');
                 } else {
                     mvNotifier.notify('Username/Password combination incorrect');
                 }

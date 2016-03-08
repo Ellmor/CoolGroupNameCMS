@@ -3,13 +3,15 @@ var router = express.Router();
 var User = require('../../models/user');
 var service = require('../services/auth.service');
 var userService = require('../services/user.service');
+var auth = require('../auth');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', auth.requiresRole("admin"), function(req, res, next) {
     User.find(function (err, results){res.json(results);});
 });
+
 /*Create user*/
-router.route('/').post(function(req, res){
+router.post('/', function(req, res){
 
     //checking for errors
     if( typeof req.body.username ==="undefined" || typeof req.body.password === "undefined"){
@@ -35,8 +37,8 @@ router.get('/:userid', function(req,res, next){
     var userid = req.params.userid;
     User.findOne({_id:userid}, function(err, results){res.json(results);});
 });
-/*Update user*/
 
+/*Update user*/
 router.put('/:userid', function(req,res,next){
 
     userService.updateUser(req.params.userid, req.body, function(response){

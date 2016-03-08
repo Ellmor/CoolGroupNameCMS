@@ -11,6 +11,27 @@ exports.authenticate  = function(req, res, next) {
     })(req, res, next);
 };
 
+exports.requiresApiLogin = function(req, res, next) {
+    if(!req.isAuthenticated()){
+        res.status(403);
+        res.end();
+    } else {
+        next();
+    }
+};
+
+exports.requiresRole = function(role) {
+    return function(req, res, next) {
+        if(!req.isAuthenticated() || req.user.roles.indexOf("admin") === -1){
+            res.status(403);
+            res.end();
+        } else {
+            next();
+        }
+    }
+};
+
+
 //Twitter OAuth
 exports.twitterAuthenticate  = function(req, res, next) {
     passport.authenticate('twitter', {
@@ -18,10 +39,8 @@ exports.twitterAuthenticate  = function(req, res, next) {
     })(req, res, next);
 };
 exports.twitterAuthenticateCallback  = function(req, res, next) {
-    console.log(req);
-    console.log(req);
     passport.authenticate('twitter', {
         failureRedirect: '/signin',
-        successRedirect: '/commentator/profile'
+        successRedirect: '/backend'
     })(req, res, next);
 };

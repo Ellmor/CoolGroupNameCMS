@@ -9,7 +9,8 @@ var userSchema = mongoose.Schema({
     hashed_pwd: String,
     roles: [String],
     provider: String, //for OAuth identification
-    providerId: String //for OAuth identification
+    providerId: String, //for OAuth identification
+    providerData: Object
 });
 
 userSchema.methods = {

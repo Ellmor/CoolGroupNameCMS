@@ -1,4 +1,4 @@
-.navbar-right(ng-controller="mvNavBarLoginCtrl as navVM")
+.navbar-right(ng-controller="mvNavBarLoginCtrl as navVM" ng-cloak)
     form.navbar-form(ng-hide="identity.isAuthenticated()")
         .form-group
             input.form-control(placeholder="Email", ng-model="username")
@@ -15,7 +15,11 @@
                 | {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
                 b.caret
             ul.dropdown-menu
+                li(ng-show="identity.currentUser.isCommentator()")
+                    a(href="/commentator/profile") Profile
                 li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="/admin/user") User Admin
+                    a(href="/admin/users") User Admin
+                li(ng-show="identity.currentUser.isAdmin()")
+                    a(href="/admin") Admin Dashboard
                 li
                     a(href="", ng-click="signout()") Sign Out

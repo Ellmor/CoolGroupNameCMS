@@ -53,7 +53,6 @@ module.exports.updateUser = function updateUser(userId, userModel, callback) {
 };
 
 module.exports.saveOAuthUserProfile = function(req, profile, done) {
-    console.log("TEST");
     User.findOne({
         provider: profile.provider,
         providerId: profile.providerId

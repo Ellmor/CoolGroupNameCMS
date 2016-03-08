@@ -21,6 +21,7 @@ module.exports = function() {
             var providerUserProfile = {
                 fullName: profile.displayName,
                 username: profile.username,
+                roles: ["commentator"],
                 provider: 'twitter',
                 providerId: profile.id,
                 providerData: providerData

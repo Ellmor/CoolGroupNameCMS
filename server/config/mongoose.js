@@ -36,6 +36,16 @@ module.exports = function (config) {
                 hashed_pwd: hash,
                 roles: []
             });
+            salt = service.createSalt();
+            hash = service.hashPwd(salt, 'commentator');
+            User.create({
+                firstName: "Commentator",
+                lastName: "LastName",
+                username: "Commentator",
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["commentator"]
+            });
         }
     });
 
