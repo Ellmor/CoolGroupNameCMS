@@ -6,6 +6,7 @@ var passport = require('passport'),
 require('./strategies/local.strategy')();
 require('./strategies/twitter.strategy')();
 require('./strategies/facebook.strategy')();
+require('./strategies/google.strategy')();
 
 
 module.exports = function () {

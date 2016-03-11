@@ -9,6 +9,7 @@
         //(without this Angular Routing takes over)
         a.btn.btn-info(target="_self" href="/oauth/twitter" rolenodemon ="button") Twitter
         a.btn.btn-info(target="_self" href="/oauth/facebook" role ="button") Facebook
+        a.btn.btn-info(target="_self" href="/oauth/google" role="button") Google
         a.btn.btn-primary(href="/signup" role="button" ng-hide="navVM.isActive('/signup')") New User
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
