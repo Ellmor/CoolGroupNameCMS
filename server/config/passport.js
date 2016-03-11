@@ -1,9 +1,11 @@
 var passport = require('passport'),
     User = require('../models/user.js')
 
-//Import Strategy files
+//Import Strategy
+
 require('./strategies/local.strategy')();
 require('./strategies/twitter.strategy')();
+require('./strategies/facebook.strategy')();
 
 
 module.exports = function () {

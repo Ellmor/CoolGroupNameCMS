@@ -17,6 +17,9 @@ module.exports = function (app) {
     app.get('/oauth/twitter', auth.twitterAuthenticate);
     app.get('/twitter/callback', auth.twitterAuthenticateCallback);
 
+    //Facebook Auth
+    app.get('/oauth/facebook', auth.facebookAuthenticate);
+    app.get('/oauth/facebook/callback', auth.facebookAuthenticateCallback);
 
     //ROUTE SETUP
     app.use('/api/users/', users);
