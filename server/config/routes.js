@@ -1,5 +1,6 @@
 var auth = require('./auth');
 var users = require('./api/user.api');
+var content = require('./api/content.api');
 
 module.exports = function (app) {
 
@@ -30,6 +31,7 @@ module.exports = function (app) {
 
     //API ROUTE SETUP
     app.use('/api/users/', users);
+    app.use('/api/content/', content);
 
     app.get('*', function (req, res) {
         res.render('index', {
