@@ -10,7 +10,7 @@ module.exports.createUser = function createUser(userModel, callback) {
     //creating user object, based on which mongo User can be created
     var user = {
         firstName: "test",
-        lastName:  "test",
+        lastName:  "test1",
         username: userModel.username,
         salt: salt,
         hashed_pwd: hash,
