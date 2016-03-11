@@ -21,10 +21,12 @@ module.exports = function() {
             providerData.token = accessToken;
             providerData.refreshToken = refreshToken;
 
+            console.log(profile);
             var providerUserProfile = {
-
-
-                username: profile.displayName,
+                firstName: profile.displayName.split(" ")[0],
+                lastName: profile.displayName.split(" ")[1],
+                username: profile.displayName.replace(" ", "-"),
+                roles: ["commentator"],
                 provider: 'facebook',
                 providerId: profile.id,
                 providerData: providerData

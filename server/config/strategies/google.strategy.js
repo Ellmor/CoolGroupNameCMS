@@ -12,9 +12,6 @@ module.exports = function() {
             passReqToCallback: true
         },
         function(req, accessToken, refreshToken, profile, done) {
-            console.log("came here");
-            console.log(accessToken);
-            console.log(config.development.google);
             var providerData = profile._json;
             providerData.accessToken = accessToken;
             providerData.refreshToken = refreshToken;
@@ -25,6 +22,7 @@ module.exports = function() {
                 fullName: profile.displayName,
                 email: profile.emails[0].value,
                 username: profile.username,
+                roles: ["commentator"],
                 provider: 'google',
                 providerId: profile.id,
                 providerData: providerData
