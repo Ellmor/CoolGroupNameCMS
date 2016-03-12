@@ -2,15 +2,15 @@
  * Created by Liga on 27-02-2016.
  */
 
-(function(){
+(function () {
 
     angular
         .module('app')
         .factory('helperService', helperService);
 
-    function helperService($location){
+    function helperService($location) {
 
-        var isActive = function(viewLocation) {
+        var isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
 

@@ -1,17 +1,17 @@
 var passport = require('passport'),
-    //url = require('url'),
+//url = require('url'),
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     config = require('../config'),
     users = require('../services/user.service');
 
-module.exports = function() {
+module.exports = function () {
     passport.use(new GoogleStrategy({
             clientID: config.development.google.clientID,
             clientSecret: config.development.google.clientSecret,
             callbackURL: config.development.google.callbackURL,
             passReqToCallback: true
         },
-        function(req, accessToken, refreshToken, profile, done) {
+        function (req, accessToken, refreshToken, profile, done) {
             var providerData = profile._json;
             providerData.accessToken = accessToken;
             providerData.refreshToken = refreshToken;

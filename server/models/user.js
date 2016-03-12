@@ -21,7 +21,7 @@ userSchema.methods = {
 
 //static method created for OAuth functionality
 userSchema.statics = {
-    findUniqueUsername: function(username, suffix, callback) {
+    findUniqueUsername: function (username, suffix, callback) {
         var _this = this;
         var possibleUsername = username + (suffix || '');
 

@@ -25,7 +25,7 @@ module.exports = {
         google: {
             clientID: '311341705290-rp10bgnd9o5lscvbh8hjv0qanqauo3pt.apps.googleusercontent.com',
             clientSecret: 'lCGkHGQZ2XFLS9vpAdOcCaI4',
-            callbackURL: 'http://localhost:'+ devPort +'/oauth/google/callback'
+            callbackURL: 'http://localhost:' + devPort + '/oauth/google/callback'
         }
     },
     production: {

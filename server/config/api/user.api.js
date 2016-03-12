@@ -6,23 +6,25 @@ var userService = require('../services/user.service');
 var auth = require('../auth');
 
 /* GET users listing. */
-router.get('/', auth.requiresRole("admin"), function(req, res, next) {
-    User.find(function (err, results){res.json(results);});
+router.get('/', auth.requiresRole("admin"), function (req, res, next) {
+    User.find(function (err, results) {
+        res.json(results);
+    });
 });
 
 /*Create user*/
-router.post('/', function(req, res){
+router.post('/', function (req, res) {
 
     //checking for errors
-    if( typeof req.body.username ==="undefined" || typeof req.body.password === "undefined"){
+    if (typeof req.body.username === "undefined" || typeof req.body.password === "undefined") {
         //return error
         res.json({message: "Error"})
     }
-    
+
     else { //if values are valid
-        userService.createUser(req.body, function(response){
+        userService.createUser(req.body, function (response) {
             console.log(response);
-            if(response.success) {
+            if (response.success) {
                 res.json(response.data)
             }
             else {
@@ -33,17 +35,19 @@ router.post('/', function(req, res){
 });
 
 /*Get User */
-router.get('/:userid', function(req,res, next){
+router.get('/:userid', function (req, res, next) {
     var userid = req.params.userid;
-    User.findOne({_id:userid}, function(err, results){res.json(results);});
+    User.findOne({_id: userid}, function (err, results) {
+        res.json(results);
+    });
 });
 
 /*Update user*/
-router.put('/:userid', function(req,res,next){
+router.put('/:userid', function (req, res, next) {
 
-    userService.updateUser(req.params.userid, req.body, function(response){
+    userService.updateUser(req.params.userid, req.body, function (response) {
         console.log(response);
-        if(response.success) {
+        if (response.success) {
             res.send(response.data);
         } else {
             res.json({message: response.message});
@@ -52,16 +56,17 @@ router.put('/:userid', function(req,res,next){
 });
 
 /*Delete user*/
-router.delete('/:userid', function(req,res,next){
+router.delete('/:userid', function (req, res, next) {
     var userid = req.params.userid;
-    User.remove({_id:userid}, function (err){
-            if(err) {
+    User.remove({_id: userid}, function (err) {
+            if (err) {
                 //if there is an error return error message
-                res.json({success:false, message:"Error", details: err});
+                res.json({success: false, message: "Error", details: err});
             } else {
                 //else return confirmation that the user was deleted
-                res.json({success:true, message: "The user " +req.params.userid+" was deleted"});
-            };
+                res.json({success: true, message: "The user " + req.params.userid + " was deleted"});
+            }
+            ;
         }
     );
 });

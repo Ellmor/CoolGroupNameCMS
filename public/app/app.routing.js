@@ -5,15 +5,15 @@
         .config(config)
         .run(run);
 
-    function config ($routeProvider, $locationProvider) {
+    function config($routeProvider, $locationProvider) {
         var routeRoleChecks = {
             admin: {
-                auth: function(mvAuth) {
+                auth: function (mvAuth) {
                     return mvAuth.authorizeCurrentUserForRoute("admin");
                 }
             },
             commentator: {
-                auth: function(mvAuth) {
+                auth: function (mvAuth) {
                     return mvAuth.authorizeCurrentUserForRoute("commentator");
                 }
             }
@@ -57,21 +57,21 @@
             .otherwise('/');
     };
 
-    function run ($rootScope, $location, mvIdentity){
+    function run($rootScope, $location, mvIdentity) {
         //runs on route change. Used to redirect users when logged in based on roles
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            if($location.path() === '/backend'){
-                if(mvIdentity.currentUser && mvIdentity.currentUser.roles.indexOf("admin")>-1){
+            if ($location.path() === '/backend') {
+                if (mvIdentity.currentUser && mvIdentity.currentUser.roles.indexOf("admin") > -1) {
                     $location.path('/admin');
-                } else if(mvIdentity.currentUser && mvIdentity.currentUser.roles.indexOf("commentator")>-1){
+                } else if (mvIdentity.currentUser && mvIdentity.currentUser.roles.indexOf("commentator") > -1) {
                     $location.path('/commentator/profile');
                 }
             }
         });
 
         //used to redirect rejected paths based on roles (rejected in resolve)
-        $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection){
-            if(rejection === 'not authorized'){
+        $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
+            if (rejection === 'not authorized') {
                 $location.path('/');
             }
         });

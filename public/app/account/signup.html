@@ -1,1 +1,22 @@
-<div ng-controller="userController" class="container"><div class="row"><form name="signUpForm"><div class="form-group"><label for="name">Username<input id="name" type="text" name="name" placeholder="Name" ng-model="user.username" autofocus="autofocus" required="required" class="form-control"/><span ng-show="signUpForm.name.$error.required" class="text-danger">Name is required.</span></label></div><div class="form-group"><label for="password">Password<input id="password" type="password" name="password" placeholder="Password" ng-model="user.password" required="required" ng-minlength="5" class="form-control"/><span ng-show="signUpForm.password.$error.required" class="text-danger">Password cannot be empty.</span><span ng-show="signUpForm.password.$error.minlength" class="text-danger">Password must be at least 5 characters.</span></label></div><button ng-click="createUser(user)" ng-disabled="signUpForm.$invalid" class="btn btn-small btn-primary">Create User</button></form></div></div>
+<div ng-controller="userController" class="container">
+    <div class="row">
+        <form name="signUpForm">
+            <div class="form-group"><label for="name">Username<input id="name" type="text" name="name"
+                                                                     placeholder="Name" ng-model="user.username"
+                                                                     autofocus="autofocus" required="required"
+                                                                     class="form-control"/><span
+                    ng-show="signUpForm.name.$error.required" class="text-danger">Name is required.</span></label></div>
+            <div class="form-group"><label for="password">Password<input id="password" type="password" name="password"
+                                                                         placeholder="Password" ng-model="user.password"
+                                                                         required="required" ng-minlength="5"
+                                                                         class="form-control"/><span
+                    ng-show="signUpForm.password.$error.required"
+                    class="text-danger">Password cannot be empty.</span><span
+                    ng-show="signUpForm.password.$error.minlength" class="text-danger">Password must be at least 5 characters.</span></label>
+            </div>
+            <button ng-click="createUser(user)" ng-disabled="signUpForm.$invalid" class="btn btn-small btn-primary">
+                Create User
+            </button>
+        </form>
+    </div>
+</div>

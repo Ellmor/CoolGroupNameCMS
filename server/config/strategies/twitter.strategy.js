@@ -6,14 +6,14 @@ var passport = require('passport'),
     config = require('../config'),
     users = require('../services/user.service');
 
-module.exports = function() {
+module.exports = function () {
     passport.use(new TwitterStrategy({
             consumerKey: config.development.twitter.clientID,
             consumerSecret: config.development.twitter.clientSecret,
             callbackURL: config.development.twitter.callbackURL,
             passReqToCallback: true
         },
-        function(req, token, tokenSecret, profile, done) {
+        function (req, token, tokenSecret, profile, done) {
             var providerData = profile._json;
             providerData.token = token;
             providerData.tokenSecret = tokenSecret;

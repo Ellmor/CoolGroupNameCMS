@@ -1,10 +1,8 @@
-
-
 (function () {
     angular.module('app')
         .factory('mvAuth', mvAuth);
 
-    function mvAuth ($http, mvIdentity, $q, mvUser) {
+    function mvAuth($http, mvIdentity, $q, mvUser) {
         return {
             authenticateUser: function (username, password) {
                 var dfd = $q.defer();
@@ -30,7 +28,7 @@
             },
             authorizeCurrentUserForRoute: function (role) {
                 console.log('checkRole in mvAuth');
-                if(mvIdentity.isAuthorized(role)){
+                if (mvIdentity.isAuthorized(role)) {
                     return true;
                 } else {
                     return $q.reject('not authorized');

@@ -15,7 +15,7 @@
             isAuthenticated: function () {
                 return !!this.currentUser;
             },
-            isAuthorized: function(role){
+            isAuthorized: function (role) {
                 return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1
             }
         }
