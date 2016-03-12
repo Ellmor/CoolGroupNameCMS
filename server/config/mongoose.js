@@ -93,7 +93,9 @@ module.exports = function (config) {
         var user = User.findOne({username: username});
 
         return {_id: user._id,
-                username: username};
+                username: username,
+                firstName: user.firstName,
+                lastName: user.lastName,};
     };
 
     var changeDate = function(change, decrease) {

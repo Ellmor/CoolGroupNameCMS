@@ -9,17 +9,38 @@ var contentService = require('../services/content.service');
 
 /* GET content listing. */
 router.get('/', function(req, res, next) {
+    console.log("req.user");
+    console.log(req.user);
     Content.find(function (err, results){console.log(results); res.json(results);});
 });
 
 /*Create content*/
 router.post('/', function(req, res){
-    contentService.createContent(req.body, function(response){
-        console.log(response);
+    //NOT SECURE
+    if(!req.user)(
+        req.user = {_id: "undefined", username: "undefined", firstName: "undefined", lastName: "undefined"}
+    )
+    contentService.createContent(req.user, req.body, function(response){
         if(response.success) {
             res.json(response.data)
         }
         else {
+            res.json({message: response.message});
+        }
+    });
+});
+
+/*Update user*/
+router.put('/:contentid', function(req,res,next){
+    //NOT SECURE
+    if(!req.user)(
+        req.user = {_id: "undefined", username: "undefined", firstName: "undefined", lastName: "undefined"}
+    )
+    contentService.updateContent(req.params.contentid, req.user, req.body, function(response){
+        console.log(response);
+        if(response.success) {
+            res.send(response.data);
+        } else {
             res.json({message: response.message});
         }
     });
