@@ -1,10 +1,7 @@
 {
-  "name": "www.piotrsuski.pl",
+  "name": "",
   "description": "",
   "main": "index.js",
-  "authors": [
-    "Ellmor <nezi2007@gmail.com>"
-  ],
   "license": "ISC",
   "moduleType": [],
   "homepage": "",
