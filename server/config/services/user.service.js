@@ -52,6 +52,14 @@ module.exports.updateUser = function updateUser(userId, userModel, callback) {
     });
 };
 
+module.exports.findUserByUsername = function findUserByUsername(username) {
+
+    var user = User.findOne({username: username});
+
+    return {_id: user._id,
+        username: username};
+};
+
 module.exports.saveOAuthUserProfile = function(req, profile, done) {
     User.findOne({
         provider: profile.provider,
@@ -87,5 +95,3 @@ module.exports.saveOAuthUserProfile = function(req, profile, done) {
         }
     });
 };
-
-

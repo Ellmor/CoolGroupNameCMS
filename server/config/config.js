@@ -21,8 +21,12 @@ module.exports = {
             clientID: '1087048447981846',
             clientSecret: '80981c736f0bb42fed95ed8b1b9fe622',
             callbackURL: 'http://localhost:' + devPort + '/oauth/facebook/callback'
+        },
+        google: {
+            clientID: '311341705290-rp10bgnd9o5lscvbh8hjv0qanqauo3pt.apps.googleusercontent.com',
+            clientSecret: 'lCGkHGQZ2XFLS9vpAdOcCaI4',
+            callbackURL: 'http://localhost:'+ devPort +'/oauth/google/callback'
         }
-
     },
     production: {
         db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
@@ -37,6 +41,11 @@ module.exports = {
             clientID: '1087048447981846',
             clientSecret: '80981c736f0bb42fed95ed8b1b9fe622',
             callbackURL: 'http://localhost:' + prodPort + '/oauth/facebook/callback'
+        },
+        google: {
+            clientID: '311341705290-rp10bgnd9o5lscvbh8hjv0qanqauo3pt.apps.googleusercontent.com',
+            clientSecret: 'lCGkHGQZ2XFLS9vpAdOcCaI4',
+            callbackURL: 'http://localhost:' + prodPort + '/oauth/google/callback'
         }
     }
 }

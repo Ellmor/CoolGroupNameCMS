@@ -57,3 +57,21 @@ exports.facebookAuthenticateCallback  = function(req, res, next) {
         successRedirect: '/admin'
     })(req, res, next);
 };
+
+//Google Auth
+exports.googleAuthenticate  = function(req, res, next) {
+    passport.authenticate('google', {
+        failureRedirect: '/signin',
+        scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email'
+        ],
+    })(req, res, next);
+}
+
+exports.googleAuthenticateCallback  = function(req, res, next) {
+    passport.authenticate('google', {
+        failureRedirect: '/signin',
+        successRedirect: '/admin'
+    })(req, res, next);
+}

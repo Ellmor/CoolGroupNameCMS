@@ -9,3 +9,4 @@ module.exports.hashPwd = function hashPwd(salt, pwd) {
     hmac.update(pwd);
     return hmac.digest('hex');
 }
+
