@@ -27,29 +27,29 @@
                 controllerAs: 'vm'
             })
             .when('/signup', {
-                templateUrl: '/partials/account/signup',
-                controller: 'userController',
+                templateUrl: '/partials/signup/signup',
+                controller: 'signupController',
                 controllerAs: 'vm'
             })
             .when('/admin', {
-                templateUrl: '/partials/admin/dashboard/dashboard',
+                templateUrl: '/partials/dashboard/dashboard',
                 controller: 'dashboardController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
             })
             .when('/admin/users', {
-                templateUrl: '/partials/admin/users/views/admin-panel',
+                templateUrl: '/partials/users/views/admin-panel',
                 controller: 'userController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
             })
             .when('/admin/users/edit/:userId', {
-                templateUrl: '/partials/admin/users/views/admin-edit',
+                templateUrl: '/partials/users/views/admin-edit',
                 controller: 'userController',
                 controllerAs: 'vm'
             })
             .when('/commentator/profile', {
-                templateUrl: '/partials/commentator/commentator-profile',
+                templateUrl: '/partials/profile/commentator-profile',
                 controller: 'commentatorController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.commentator
