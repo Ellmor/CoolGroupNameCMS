@@ -6,9 +6,9 @@ var passport = require('passport'),
 
 module.exports = function() {
     passport.use(new GoogleStrategy({
-            clientID: config.development.google.clientID,
-            clientSecret: config.development.google.clientSecret,
-            callbackURL: config.development.google.callbackURL,
+            clientID: config[process.env.NODE_ENV].google.clientID,
+            clientSecret: config[process.env.NODE_ENV].google.clientSecret,
+            callbackURL: config[process.env.NODE_ENV].google.callbackURL,
             passReqToCallback: true
         },
         function(req, accessToken, refreshToken, profile, done) {
