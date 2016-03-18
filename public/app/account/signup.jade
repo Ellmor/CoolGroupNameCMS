@@ -12,4 +12,12 @@
                     span.text-danger(ng-show="signUpForm.password.$error.required") Password cannot be empty.
                     span.text-danger(ng-show="signUpForm.password.$error.minlength") Password must be at least 5 characters.
 
+            div.form-group
+                label(for="firstName") First Name
+                    input#firstName.form-control(type="text", name="firstName", placeholder="First Name", ng-model="user.firstName", required)
+                    span.text-danger(ng-show="signUpForm.firstName.$error.required") First Name cannot be empty.
+            div.form-group
+                label(for="lastName") First Name
+                    input#lastName.form-control(type="text", name="lastName", placeholder="Last Name", ng-model="user.lastName", required)
+                    span.text-danger(ng-show="signUpForm.lastName.$error.required") Last Name cannot be empty.
             button.btn.btn-small.btn-primary(ng-click="createUser(user)", ng-disabled="signUpForm.$invalid") Create User

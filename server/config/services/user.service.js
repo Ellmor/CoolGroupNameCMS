@@ -9,12 +9,12 @@ module.exports.createUser = function createUser(userModel, callback) {
 
     //creating user object, based on which mongo User can be created
     var user = {
-        firstName: "test",
-        lastName:  "test1",
+        firstName: userModel.firstName,
+        lastName:  userModel.lastName,
         username: userModel.username,
         salt: salt,
         hashed_pwd: hash,
-        roles: ["user"]
+        roles: ["commentator"]
     };
 
     //creating passing object to mongoose shema

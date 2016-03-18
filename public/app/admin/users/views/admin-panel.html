@@ -4,19 +4,19 @@
     <h1>Admin Panel with CRUD functionality</h1>
     <table ng-model="Users" ng-init="getUsers()" class="table table-bordered">
       <thead>
-        <th>_Id</th>
-        <th>Name</th>
+        <th> Name</th>
+        <th>Provider</th>
         <th>UserName</th>
-        <th>Password</th>
+        <th>Role</th>
         <th>Update</th>
         <th>Delete</th>
       </thead>
       <tbody>
         <tr ng-repeat="user in Users">
-          <td>{{user._id}}</td>
-          <td>{{user.firstName + " " + lastName}}</td>
+          <td>{{user.firstName +" " + lastName}}</td>
+          <td>{{user.provider}}</td>
           <td>{{user.username}}</td>
-          <td>{{user.hashed_pwd}}</td>
+          <td ng-repeat="role in user.roles">{{role}}</td>
           <td><a href="/admin/users/edit/{{user._id}}" class="btn btn-success btn-block">Edit</a></td>
           <td>
             <button ng-click="deleteUser(user._id)" class="btn btn-danger btn-block">Delete</button>
@@ -26,14 +26,46 @@
     </table>
     <h2>Create user</h2>
     <form>
+      <div class="row">
+        <label>Roles<br/>
+          <div class="col-lg-2">
+            <div class="input-group"><span class="input-group-addon">
+                <label>Admin
+                  <input type="checkbox" name="roles" value="Admin" ng-model="user.roles.admin"/>
+                </label></span></div>
+          </div>
+          <div class="col-lg-2">
+            <div class="input-group"><span class="input-group-addon">
+                <label>Commentator
+                  <input type="checkbox" name="roles" value="Commentator" ng-model="user.roles.commentator"/>
+                </label></span></div>
+          </div>
+          <div class="col-lg-2">
+            <div class="input-group"><span class="input-group-addon">
+                <label>Author
+                  <input type="checkbox" name="roles" value="Author" ng-model="user.roles.author"/>
+                </label></span></div>
+          </div>
+        </label>
+      </div>
       <div class="form-group">
         <label for="name">Username
-          <input id="name" type="text" name="name" placeholder="Name" ng-model="user.username" autofocus="autofocus" class="form-control"/>
+          <input id="name" type="text" name="name" placeholder="Name" ng-model="user.username" autofocus="autofocus" required="required" class="form-control"/>
         </label>
       </div>
       <div class="form-group">
         <label for="password">Password
-          <input type="password" id="password" name="password" placeholder="Password" ng-model="user.password" class="form-control"/>
+          <input type="password" id="password" name="password" placeholder="Password" ng-model="user.password" required="required" class="form-control"/>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" ng-model="user.firstName" class="form-control"/>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" ng-model="user.lastName" class="form-control"/>
         </label>
       </div>
       <button ng-click="createUser(user)" class="btn btn-small btn-warning">Create User</button>
