@@ -28,9 +28,7 @@ module.exports = function() {
                 roles: ["commentator"],
                 provider: 'facebook',
                 providerId: profile.id,
-                providerData: providerData,
-                createDate: new Date(),
-                lastEditedDate: new Date()
+                providerData: providerData
             };
             //console.log(providerUserProfile);
             

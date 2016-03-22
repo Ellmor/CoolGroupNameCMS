@@ -11,8 +11,9 @@ var userSchema = mongoose.Schema({
     provider: String, //for OAuth identification
     providerId: String, //for OAuth identification
     providerData: Object,
-    createDate: Date,
-    lastEditedDate: Date
+    createDate: { type: Date, default: Date.now },
+    lastEditedDate: { type: Date, default: Date.now }
+
 });
 
 userSchema.methods = {

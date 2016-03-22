@@ -25,9 +25,7 @@ module.exports = function() {
                 roles: ["commentator"],
                 provider: 'google',
                 providerId: profile.id,
-                providerData: providerData,
-                createDate: new Date(),
-                lastEditedDate: new Date()
+                providerData: providerData
             };
 
             users.saveOAuthUserProfile(req, providerUserProfile, done);

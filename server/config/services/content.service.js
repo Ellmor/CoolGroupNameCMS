@@ -14,8 +14,6 @@ module.exports.createContent = function createContent(user, contentModel, callba
             content: contentModel.content || "undefined",
             state: contentModel.state || "undefined",
             author: {_id: user._id, username: user.username, firstName: user.firstName, lastName: user.lastName},
-            dateCreated: new Date(),
-            lastEdited: new Date(),
             published: contentModel.published || false
         };
 
