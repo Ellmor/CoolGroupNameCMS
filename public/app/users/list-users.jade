@@ -4,18 +4,18 @@
 
         table.table.table-bordered(ng-model="Users", ng-init="getUsers()")
             thead
-                th _Id
                 th Name
+                th Login Medium
                 th UserName
-                th Password
+                th Role
                 th Update
                 th Delete
             tbody
                 tr( ng-repeat="user in Users")
-                    td {{user._id}}
-                    td {{user.firstName + " " + lastName}}
+                    td {{user.firstName + "-" + user.lastName}}
+                    td {{user.provider}}
                     td {{user.username}}
-                    td {{user.hashed_pwd}}
+                    td(ng-repeat="role in user.roles") {{role}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
                     td
@@ -32,4 +32,11 @@
                 label(for="password") Password
                     input.form-control(type="password", id="password", name="password", placeholder="Password", ng-model="user.password")
 
+            div.form-group
+                label(for="firstName") First Name
+                    input.form-control(type="text", id="firstName", name="firstName", placeholder="First Name", ng-model="user.firstName")
+
+            div.form-group
+                label(for="lastName") Last Name
+                    input.form-control(type="text", id="lastName", name="lastName", placeholder="Last Name", ng-model="user.lastName")
             button.btn.btn-small.btn-warning( ng-click="createUser(user)") Create User

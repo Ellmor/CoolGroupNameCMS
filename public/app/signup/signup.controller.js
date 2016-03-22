@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .controller('userController', userController);
+        .controller('signUpController', signUpController);
 
-    function userController($scope, userService, mvNotifier, helperService, $routeParams) {
+    function signUpController($scope, userService, mvNotifier, helperService, $routeParams) {
         var vm = this;
 
         if ($routeParams.userId) {
