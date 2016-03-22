@@ -38,13 +38,13 @@
                 resolve: routeRoleChecks.admin
             })
             .when('/admin/users', {
-                templateUrl: '/partials/users/views/admin-panel',
+                templateUrl: '/partials/users/list-users',
                 controller: 'userController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
             })
             .when('/admin/users/edit/:userId', {
-                templateUrl: '/partials/users/views/admin-edit',
+                templateUrl: '/partials/users/edit-user',
                 controller: 'userController',
                 controllerAs: 'vm'
             })
