@@ -10,6 +10,7 @@
         <th>Role</th>
         <th>Update</th>
         <th>Delete</th>
+        <th>Date</th>
       </thead>
       <tbody>
         <tr ng-repeat="user in Users">
@@ -17,6 +18,7 @@
           <td>{{user.provider}}</td>
           <td>{{user.username}}</td>
           <td ng-repeat="role in user.roles">{{role}}</td>
+          <td>{{user.createDate}}</td>
           <td><a href="/admin/users/edit/{{user._id}}" class="btn btn-success btn-block">Edit</a></td>
           <td>
             <button ng-click="deleteUser(user._id)" class="btn btn-danger btn-block">Delete</button>

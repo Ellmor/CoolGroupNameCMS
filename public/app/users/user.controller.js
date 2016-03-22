@@ -1,4 +1,4 @@
-x(function () {
+(function () {
     "use strict";
 
     angular

@@ -10,12 +10,14 @@
                 th Role
                 th Update
                 th Delete
+                th Date
             tbody
                 tr( ng-repeat="user in Users")
                     td {{user.firstName + "-" + user.lastName}}
                     td {{user.provider}}
                     td {{user.username}}
                     td(ng-repeat="role in user.roles") {{role}}
+                    td {{user.createDate}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
                     td
