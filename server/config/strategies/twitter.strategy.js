@@ -24,7 +24,9 @@ module.exports = function() {
                 roles: ["commentator"],
                 provider: 'twitter',
                 providerId: profile.id,
-                providerData: providerData
+                providerData: providerData,
+                createDate: new Date(),
+                lastEditedDate: new Date()
             };
 
             //Saving the user to mongodb
