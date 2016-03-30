@@ -10,13 +10,14 @@
                 th Role
                 th Update
                 th Delete
+
                 th Date
             tbody
                 tr( ng-repeat="user in Users")
                     td {{user.firstName + "-" + user.lastName}}
                     td {{user.provider}}
                     td {{user.username}}
-                    td(ng-repeat="role in user.roles") {{role}}
+                    td {{user.roles.join(', ')}}
                     td {{user.createDate}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
@@ -25,7 +26,13 @@
 
         h2 Create user
 
-        form
+        div.form-group
+            form
+                select#role-selection(multiple="multiple", ng-model="user.roles")
+                    option(value="admin") Admin
+                    option(value="author") Author
+                    option(value="commentator") Commentator
+
             div.form-group
                 label(for="name") Username
                     input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus)
@@ -42,3 +49,4 @@
                 label(for="lastName") Last Name
                     input.form-control(type="text", id="lastName", name="lastName", placeholder="Last Name", ng-model="user.lastName")
             button.btn.btn-small.btn-warning( ng-click="createUser(user)") Create User
+
