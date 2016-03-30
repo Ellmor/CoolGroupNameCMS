@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     service = require('./services/auth.service'),
     userService = require('./services/user.service'),
     User = require('../models/user'),
-    Content = require('../models/content');
+    Content = require('../models/content'),
+    Category = require('../models/category');
 
 module.exports = function (config) {
 
@@ -86,6 +87,25 @@ module.exports = function (config) {
             }];
 
             Content.create(content);
+        }
+    });
+    Category.find({}).exec(function (err, collection) {
+        if (collection.length === 0) {
+
+            var category = [{
+                "name": "Introducing Amsterdam",
+
+            },
+                {
+                    "name": "Toronto",
+
+                },
+                {
+                    "name": "Introducing Tibet",
+
+                }];
+
+            Category.create(category);
         }
     });
 
