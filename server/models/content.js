@@ -6,10 +6,15 @@ var contentSchema = mongoose.Schema({
     content: String,
     state: String,
     author: Object,
-    dateCreated: Date,
-    lastEdited: Date,
-    published: Boolean
-
+    published: Boolean,
+    comments: [{ body: String, date: Date }],
+    createDate: { type: Date, default: Date.now },
+    lastEditedDate: { type: Date, default: Date.now },
+    tags: { type: [String], index: true },
+    meta: {
+        votes: Number,
+        favs:  Number
+    }
 });
 
 module.exports = mongoose.model('Content', contentSchema);

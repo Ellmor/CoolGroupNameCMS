@@ -44,6 +44,7 @@
                 .then(modelUser);
         }
 
+
         $scope.deleteUser = function (userid) {
             userService.deleteUser(userid).then(
                 function(responce){
@@ -66,3 +67,4 @@
     }
 
 })();
+
