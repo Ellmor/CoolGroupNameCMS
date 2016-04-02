@@ -10,7 +10,10 @@ var userSchema = mongoose.Schema({
     roles: [String],
     provider: String, //for OAuth identification
     providerId: String, //for OAuth identification
-    providerData: Object
+    providerData: Object,
+    createDate: { type: Date, default: Date.now },
+    lastEditedDate: { type: Date, default: Date.now }
+
 });
 
 userSchema.methods = {
