@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('app')
-        .factory('mvIdentity', mvIdentity);
+        .factory('mvIdentity');
 
     function mvIdentity($window, mvUser) {
         var currentUser;

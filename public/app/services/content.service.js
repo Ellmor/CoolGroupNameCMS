@@ -4,7 +4,7 @@
         .module('app')
         .factory('contentService', contentService);
 
-    function contentService($http){
+    function contentService($http, mvIdentity){
 
         var getContents = function(){
             return $http.get("/api/users")
@@ -21,9 +21,11 @@
         };
 
         var createContent = function(content){
-            console.log(user);
-            return $http.post("/api/users", content)
+            console.log(content);
+            content.author
+            return $http.post("/api/content", content)
                 .then(function(response){
+                    console.log(response);
                     return response.data;
                 })
         };

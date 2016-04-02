@@ -46,17 +46,17 @@
 
         $scope.deleteContent = function (contentid) {
             contentService.deleteContent(contentid).then(
-                function(responce){
+                function(response){
                     //if the content was deleted
-                    if(responce.success){
+                    if(response.success){
                         //notify that the content was deleted
-                        mvNotifier.notify(responce.message);
+                        mvNotifier.notify(response.message);
                         //get the new list of users and add it to the scope.
                         contentService.getContent()
                             .then(modelContent);
                         //otherwise show error message and do nothing.
                     } else {
-                        mvNotifier.notify(responce.message);
+                        mvNotifier.notify(response.message);
                     }
                 }
             );

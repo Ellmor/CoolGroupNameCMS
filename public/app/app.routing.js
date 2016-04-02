@@ -48,6 +48,11 @@
                 controller: 'userController',
                 controllerAs: 'vm'
             })
+            .when('/content', {
+                templateUrl: '/partials/author/content',
+                controller: 'contentController',
+                controllerAs: 'vm'
+            })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
                 controller: 'commentatorController',

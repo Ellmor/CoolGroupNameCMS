@@ -1,19 +1,18 @@
 .container(ng-controller='contentController')
     .row
         h2 New Post
+        form
+            div.form-group
+                label(for="title") Title
+                    input.form-control(type="text", id="title", name="title", placeholder="Title", ng-model="content.title", autofocus)
 
-            form
-                div.form-group
-                    label(for="title") Title
-                        input#name.form-control(type="text", id="title", name="title", placeholder="Title", ng-model="content.title", autofocus)
+            div.form-group
+                label(for="headline") Headline
+                    input.form-control(type="headline", id="headline", name="headline", placeholder="Headline", ng-model="content.headline")
 
-                div.form-group
-                    label(for="headline") Headline
-                        input.form-control(type="headline", id="headline", name="headline", placeholder="Headline", ng-model="content.headline")
+            div.form-group
+                label(for="article") Article
+                    input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.content")
 
-                div.form-group
-                    label(for="article") Article
-                        input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.article")
-
-                button.btn.btn-small.btn-warning( ng-click="createPost(content)") Create Post
+            button.btn.btn-small.btn-warning( ng-click="createContent(content)") Create Post
 
