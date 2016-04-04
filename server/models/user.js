@@ -5,6 +5,7 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     username: String,
+    email: String,
     salt: String,
     hashed_pwd: String,
     roles: [String],
@@ -12,8 +13,9 @@ var userSchema = mongoose.Schema({
     providerId: String, //for OAuth identification
     providerData: Object,
     createDate: { type: Date, default: Date.now },
-    lastEditedDate: { type: Date, default: Date.now }
-
+    lastEditedDate: { type: Date, default: Date.now },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 userSchema.methods = {

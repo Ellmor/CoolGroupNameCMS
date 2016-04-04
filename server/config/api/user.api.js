@@ -5,6 +5,7 @@ var service = require('../services/auth.service');
 var userService = require('../services/user.service');
 var auth = require('../auth');
 
+console.log('users.api');
 /* GET users listing. */
 router.get('/', auth.requiresRole("admin"), function(req, res, next) {
     User.find(function (err, results){res.json(results);});

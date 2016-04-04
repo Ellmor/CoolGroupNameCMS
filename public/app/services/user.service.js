@@ -41,11 +41,20 @@
                     return response.data;
                 })
         };
+
+        var requestNewPassword = function(user){
+            return $http.post("/forgotPassword", {username: user.username, email: user.email})
+                .then(function(response){
+                    console.log(response);
+                    return response.data;
+                })
+        };
         return {
             getUsers: getUsers,
             getUser: getUser,
             createUser: createUser,
             updateUser: updateUser,
+            requestNewPassword: requestNewPassword,
             deleteUser: deleteUser
         }
 
