@@ -53,8 +53,8 @@ exports.passwordRecovery = function(req, res, next) {
             var smtpTransport = nodemailer.createTransport({
                 service: "Gmail",
                 auth: {
-                    user: "liga.daine@gmail.com",
-                    pass: "node1024"
+                    user: "cqtkbnns@gmail.com",
+                    pass: "cqtkbnns1234"
                 }
             });
             var mailOptions = {
