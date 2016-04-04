@@ -28,7 +28,7 @@
             })
             .when('/signup', {
                 templateUrl: '/partials/signup/signup',
-                controller: 'signupController',
+                controller: 'signUpController',
                 controllerAs: 'vm'
             })
             .when('/admin', {
