@@ -3,7 +3,7 @@ var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 
-var jsFiles = ['*.js', 'src/**/*.js'];
+var jsFiles = ['*.js', 'server/**/*.js'];
 
 gulp.task('style', function () {
     gulp.src(jsFiles)
@@ -73,10 +73,10 @@ gulp.task('inject', function () {
 
 gulp.task('serve', ['style', 'inject'], function () {
     var options = {
-        script: './bin/www',
+        script: 'server.js',
         delayTime: 1,
         env: {
-            'PORT': 5000
+            'PORT': 3030
         },
         watch: jsFiles
     };

@@ -22,9 +22,9 @@ module.exports = function (config) {
             salt = service.createSalt();
             hash = service.hashPwd(salt, 'admin');
             User.create({
-                firstName: "Admin",
-                lastName: "none",
-                username: "Admin",
+                firstName: 'Admin',
+                lastName: 'none',
+                username: 'Admin',
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ["admin"]
@@ -32,7 +32,7 @@ module.exports = function (config) {
             salt = service.createSalt();
             hash = service.hashPwd(salt, 'nezi12');
             User.create({
-                firstName: "Piotr",
+                firstName: 'Piotr',
                 lastName: "Suski",
                 username: "Ellmor",
                 salt: salt,

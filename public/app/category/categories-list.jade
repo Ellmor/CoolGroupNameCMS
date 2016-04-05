@@ -1,0 +1,20 @@
+//
+   Created by D'oh on 4/5/16.
+
+.container(ng-model='categoryController')
+    .row
+
+        table.table.table-bordered(ng-model="Categories", ng-init="getCategories()")
+            thead
+                th Name
+                th Date
+                th Edit
+                th Delete
+            tbody
+                tr(ng-repeat="category in Categories")
+                    td {{ category.Name }}
+                    td {{ category.createDate }}
+                    td
+                        a.btn.btn-success.btn-block Edit
+                    td
+                        button.btn.btn-danger.btn-block(ng-click="deleteCategory(category._id)") Delete
