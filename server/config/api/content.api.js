@@ -50,6 +50,7 @@ router.put('/:contentid', function(req,res,next){
 router.get('/:contentid', function(req,res, next){
     var contentid = req.params.contentid;
     Content.findOne({_id:contentid}, function(err, results){res.json(results);});
+    console.log(contentid);
 });
 
 /*Delete content*/
@@ -61,7 +62,7 @@ router.delete('/:contentid', function(req,res,next){
                 res.json({success:false, message:"Error", details: err});
             } else {
                 //else return confirmation that the user was deleted
-                res.json({success:true, message: "The user " +req.params.contentid+" was deleted"});
+                res.json({success:true, message: "The article " +req.params.contentid+" was deleted"});
             };
         }
     );

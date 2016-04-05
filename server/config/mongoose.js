@@ -95,7 +95,7 @@ module.exports = function (config) {
         return {_id: user._id,
                 username: username,
                 firstName: user.firstName,
-                lastName: user.lastName,};
+                lastName: user.lastName};
     };
 
     var changeDate = function(change, decrease) {

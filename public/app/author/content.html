@@ -20,5 +20,28 @@
       </div>
       <button ng-click="createContent(content)" class="btn btn-small btn-warning">Create Post</button>
     </form>
+    <h2>All Posts
+      <table ng-model="content" ng-init="getContents()" class="table table-bordered">
+        <thead>
+          <th>Title</th>
+          <th>Headline</th>
+          <th>Content</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="content in Contents">
+            <td>{{content.title}}</td>
+            <td>{{content.headline}}</td>
+            <td>{{content.content}}</td>
+            <td>{{content._id}}</td>
+            <td><a href="/content/edit/{{content._id}}" class="btn btn-success btn-block">Edit</a></td>
+            <td>
+              <button ng-click="deleteContent(content._id)" class="btn btn-danger btn-block">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </h2>
   </div>
 </div>

@@ -29,6 +29,7 @@
         $scope.getContent = function (contentid) {
             contentService.getContent(contentid)
                 .then(modelContent);
+            console.log(contentid);
         }
 
         $scope.createContent = function (content) {

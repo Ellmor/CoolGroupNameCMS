@@ -1,0 +1,22 @@
+.container(ng-controller='contentController')
+    .row
+        form(ng-init="getContent(vm.contentId)")
+            div.form-group
+                p {{contentId}}
+
+                label(for="title") Title
+                    input.form-control(type="text", id="title", name="title", placeholder="Title", ng-model="Content.title", autofocus)
+
+            div.form-group
+                label(for="headline") Headline
+                    //input.form-control(type="headline", id="headline", name="headline", placeholder="Headline", ng-model="Content.headline")
+                    textarea.form-control(rows='4', cols='50', id="headline", name='headline', placeholder="Headline", ng-model='Content.headline')
+
+            div.form-group
+                label(for="article") Article
+                    //input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="Content.content")
+                    textarea.form-control(rows='4', cols='50', id="article", name='article', placeholder="Article", ng-model='Content.content')
+
+
+            button.btn.btn-small.btn-warning(ng-click="updateContent(Content)") Update Post
+

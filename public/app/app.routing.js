@@ -53,6 +53,11 @@
                 controller: 'contentController',
                 controllerAs: 'vm'
             })
+            .when('/content/edit/:contentId', {
+                templateUrl: '/partials/author/edit-content',
+                controller: 'contentController',
+                controllerAs: 'vm'
+            })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
                 controller: 'commentatorController',
