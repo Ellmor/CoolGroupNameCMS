@@ -8,17 +8,16 @@
                 th Login Medium
                 th UserName
                 th Role
+                th Date
                 th Update
                 th Delete
-
-                th Date
             tbody
                 tr( ng-repeat="user in Users")
                     td {{user.firstName + "-" + user.lastName}}
                     td {{user.provider}}
                     td {{user.username}}
                     td {{user.roles.join(', ')}}
-                    td {{user.createDate}}
+                    td {{user.createDate | date:'medium'}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
                     td

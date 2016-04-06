@@ -13,13 +13,11 @@
             tbody
                 tr(ng-repeat="cat in Categories")
                     td {{ cat.name }}
-                    td {{ cat.createDate }}
+                    td {{ cat.createDate | date:'medium'}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/categories/edit/{{cat._id}}") Edit
                     td
                         button.btn.btn-danger.btn-block(ng-click="deleteCategory(cat._id)") Delete
-
-            h2 Create categories
 
                 div.form-group
                     form

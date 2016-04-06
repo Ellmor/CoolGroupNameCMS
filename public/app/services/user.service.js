@@ -37,7 +37,11 @@
         };
 
         var updateUser = function(user){
-            return $http.put("/api/users/" + user._id, {username: user.username, password: user.password})
+            return $http.put("/api/users/" + user._id, {username: user.username,
+                password: user.password,
+                firstName:user.firstName,
+                lastName: user.lastName,
+                roles: user.roles})
                 .then(function(response){
                     return response.data;
                 })

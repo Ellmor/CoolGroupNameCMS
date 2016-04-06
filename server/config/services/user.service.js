@@ -14,7 +14,7 @@ module.exports.createUser = function createUser(userModel, callback) {
         username: userModel.username,
         salt: salt,
         hashed_pwd: hash,
-        roles: userModel.roles
+        roles: userModel.roles || ['commentator']
     };
 
     //creating passing object to mongoose schema
@@ -39,6 +39,9 @@ module.exports.updateUser = function updateUser(userId, userModel, callback) {
         var hash = authService.hashPwd(salt, userModel.password);
 
         user.username = userModel.username;
+        user.firstName = userModel.firstName;
+        user.lastName = userModel.lastName;
+        user.roles = userModel.roles;
         user.hashed_pwd = hash;
         user.salt = salt;
 

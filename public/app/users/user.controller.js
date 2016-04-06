@@ -40,7 +40,7 @@
         $scope.updateUser = function (user) {
             console.log(user);
             userService.updateUser(user);
-            userService.getUser(user.userid)
+            userService.getUser(user._id)
                 .then(modelUser);
         }
 

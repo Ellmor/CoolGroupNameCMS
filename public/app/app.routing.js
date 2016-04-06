@@ -46,7 +46,8 @@
             .when('/admin/users/edit/:userId', {
                 templateUrl: '/partials/users/edit-user',
                 controller: 'userController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
             })
             .when('/admin/categories',{
                 templateUrl: '/partials/category/categories-list',

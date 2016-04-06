@@ -8,7 +8,7 @@
 
             div.form-group
                 form
-                    select#role-selection(multiple="multiple", ng-model="user.roles")
+                    select#role-selection(multiple="multiple", ng-model="User.roles")
                         option(value="admin") Admin
                         option(value="author") Author
                         option(value="commentator") Commentator
@@ -18,9 +18,9 @@
                     input#password.form-control(type="text", name="password", placeholder="Password", ng-model="User.password")
             div.form-group
                 label(for="firstName") First Name
-                    input.form-control(type="text", id="firstName", name="firstName", placeholder="First Name", ng-model="user.firstName")
+                    input.form-control(type="text", id="firstName", name="firstName", placeholder="First Name", ng-model="User.firstName")
 
             div.form-group
                 label(for="lastName") Last Name
-                    input.form-control(type="text", id="lastName", name="lastName", placeholder="Last Name", ng-model="user.lastName")
+                    input.form-control(type="text", id="lastName", name="lastName", placeholder="Last Name", ng-model="User.lastName")
             button.btn.btn-small.btn-primary(ng-click="updateUser(User)") Update User
