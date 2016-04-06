@@ -46,11 +46,30 @@
                     return response.data;
                 })
         };
+
+        var requestNewPassword = function(user){
+            return $http.post("/api/users/forgotPassword", {username: user.username, email: user.email})
+                .then(function(response){
+                    console.log(response);
+                    return response.data;
+                })
+        };
+        var resetPassword = function(user){
+            console.log('resetPassword');
+            return $http.put("/api/users/resetPassword", {token: user.token, password: user.password})
+                .then(function(response){
+                    console.log(response);
+                    return response.data;
+                })
+        };
+
         return {
             getUsers: getUsers,
             getUser: getUser,
             createUser: createUser,
             updateUser: updateUser,
+            requestNewPassword: requestNewPassword,
+            resetPassword: resetPassword,
             deleteUser: deleteUser
         }
 

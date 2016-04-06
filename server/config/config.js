@@ -47,5 +47,12 @@ module.exports = {
             clientSecret: 'lCGkHGQZ2XFLS9vpAdOcCaI4',
             callbackURL: 'https://floating-fortress-48507.herokuapp.com:' + prodPort + '/oauth/google/callback'
         }
+    },
+    mailer: {
+        auth: {
+            user: 'test@example.com',
+            pass: 'secret',
+        },
+        defaultFromAddress: 'First Last <test@example.com>'
     }
 }

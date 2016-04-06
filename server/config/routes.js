@@ -3,6 +3,7 @@ var users = require('./api/user.api');
 var content = require('./api/content.api');
 var categories = require('./api/categories.api.js');
 
+
 module.exports = function (app) {
 
     //Angular Partials
@@ -10,11 +11,13 @@ module.exports = function (app) {
         res.render('../../public/app/' + req.params[0]);
     });
 
+    //Route for reset tokens (links send to Mails)
+
     app.post('/logout', function (req, res) {
         req.logOut();
         res.end();
     });
-
+//
     //Local Auth
     app.post('/login', auth.authenticate);
 

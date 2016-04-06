@@ -1,0 +1,24 @@
+
+<div ng-controller="mvNavBarLoginCtrl as navVM" ng-cloak="ng-cloak" class="navbar-right">
+  <form ng-hide="identity.isAuthenticated()" class="navbar-form">
+    <div class="form-group">
+      <input placeholder="Email" ng-model="username" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <input type="password" placeholder="Password" ng-model="password" class="form-control"/>
+    </div>
+    <button ng-click="signin(username,password)" class="btn btn-primary">Sign in</button>
+    <!--OAuth is called directly. target="_self" makes sure that the server is targeted directly.-->
+    <!--(without this Angular Routing takes over)--><a target="_self" href="/oauth/twitter" rolenodemon="button" class="btn btn-info">Twitter</a><a target="_self" href="/oauth/facebook" role="button" class="btn btn-info">Facebook</a><a target="_self" href="/oauth/google" role="button" class="btn btn-info">Google</a><a href="/signup" role="button" ng-hide="navVM.isActive('/signup')" class="btn btn-primary">New User</a><a href="/passwordRecovery" role="button" ng-hide="navVM.isActive('/passwordRecovery')" class="btn btn-default">Psw Recovery</a>
+  </form>
+  <ul ng-show="identity.isAuthenticated()" class="nav navbar-nav navbar-right">
+    <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">{{identity.currentUser.firstName + " " + identity.currentUser.lastName}}<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li ng-show="identity.currentUser.isCommentator()"><a href="/commentator/profile">Profile</a></li>
+        <li ng-show="identity.currentUser.isAdmin()"><a href="/admin/users">User Admin</a></li>
+        <li ng-show="identity.currentUser.isAdmin()"><a href="/admin">Admin Dashboard</a></li>
+        <li><a href="" ng-click="signout()">Sign Out</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -61,7 +61,7 @@ router.delete('/:contentid', function(req,res,next){
                 res.json({success:false, message:"Error", details: err});
             } else {
                 //else return confirmation that the user was deleted
-                res.json({success:true, message: "The user " +req.params.contentid+" was deleted"});
+                res.json({success:true, message: "The user " + req.params.contentid + " was deleted"});
             };
         }
     );

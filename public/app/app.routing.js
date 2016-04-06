@@ -68,6 +68,16 @@
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.commentator
             })
+            .when('/passwordRecovery', {
+                templateUrl: '/partials/password-recovery/password-recovery',
+                controller: 'passwordRecoveryController',
+                controllerAs: 'vm'
+            })
+            .when('/reset/:token', {
+                templateUrl: '/partials/password-recovery/password-reset',
+                controller: 'passwordResetController',
+                controllerAs: 'vm'
+            })
             .otherwise('/');
     };
 
