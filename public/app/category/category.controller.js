@@ -11,8 +11,8 @@
         var vm = this;
 
 
-        if ($routeParams.categoryId) {
-            vm.categoryId = $routeParams.categoryId;
+        if ($routeParams.categoryid) {
+            vm.categoryId = $routeParams.categoryid;
 
         }else{
 
@@ -40,7 +40,7 @@
         $scope.getCategory = function (categoryid) {
 
             categoryService.getCategory(categoryid)
-                .then(modelCategory());
+                .then(modelCategory);
         }
         $scope.createCategory = function (category) {
             categoryService.createCategory(category);
