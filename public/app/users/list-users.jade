@@ -1,8 +1,8 @@
-.container
+.container(ng-controller='userController')
     .row
         h1 Admin Panel with CRUD functionality
 
-        table.table.table-bordered(ng-init="getUsers()")
+        table.table.table-bordered(ng-model="Users", ng-init="getUsers()")
             thead
                 th Name
                 th Login Medium
@@ -28,8 +28,8 @@
 
         div.form-group
             form
-                select#role-selection(multiple="multiple",ng-model="user.roles")
-                    option(,value="admin") Admin
+                select#role-selection(multiple="multiple", ng-model="user.roles")
+                    option(value="admin") Admin
                     option(value="author") Author
                     option(value="commentator") Commentator
 
