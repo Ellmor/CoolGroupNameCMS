@@ -12,7 +12,8 @@
 
             div.form-group
                 label(for="article") Article
-                    input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.content")
+                    //input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.content")
+                    textarea.form-control(rows='4', cols='50', id="article", name='article', placeholder="Article", ng-model='Content.content')
 
             button.btn.btn-small.btn-warning( ng-click="createContent(content)") Create Post
 
@@ -32,6 +33,6 @@
                         td {{content.content}}
                         td {{content._id}}
                         td
-                            a.btn.btn-success.btn-block(href="/content/edit/{{content._id}}") Edit
+                            a.btn.btn-success.btn-block(href="/admin/content/edit/{{content._id}}") Edit
                         td
                             button.btn.btn-danger.btn-block(ng-click="deleteContent(content._id)") Delete

@@ -15,7 +15,8 @@
       </div>
       <div class="form-group">
         <label for="article">Article
-          <input type="article" id="article" name="article" placeholder="Article" ng-model="content.content" class="form-control"/>
+          <!--input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.content")-->
+          <textarea rows="4" cols="50" id="article" name="article" placeholder="Article" ng-model="Content.content" class="form-control"></textarea>
         </label>
       </div>
       <button ng-click="createContent(content)" class="btn btn-small btn-warning">Create Post</button>
@@ -35,7 +36,7 @@
             <td>{{content.headline}}</td>
             <td>{{content.content}}</td>
             <td>{{content._id}}</td>
-            <td><a href="/content/edit/{{content._id}}" class="btn btn-success btn-block">Edit</a></td>
+            <td><a href="/admin/content/edit/{{content._id}}" class="btn btn-success btn-block">Edit</a></td>
             <td>
               <button ng-click="deleteContent(content._id)" class="btn btn-danger btn-block">Delete</button>
             </td>

@@ -48,15 +48,17 @@
                 controller: 'userController',
                 controllerAs: 'vm'
             })
-            .when('/content', {
+            .when('/admin/content', {
                 templateUrl: '/partials/author/content',
                 controller: 'contentController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
             })
-            .when('/content/edit/:contentId', {
+            .when('/admin/content/edit/:contentId', {
                 templateUrl: '/partials/author/edit-content',
                 controller: 'contentController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
             })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',

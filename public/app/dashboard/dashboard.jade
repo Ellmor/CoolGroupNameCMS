@@ -5,4 +5,12 @@
     .row
         .panel.panel-default
             .panel-body
-                a.btn.btn-primary(href="/admin/users" role="button") Users
+                ul.list-group
+                    li(ng-show="identity.currentUser.isAdmin()")
+                        a.btn.btn-primary(href="/admin/users" role="button") Users
+                    li(ng-show="identity.currentUser.isAdmin()")
+                        a.btn.btn-primary(href="/admin/content" role="button") Content
+                    li(ng-show="identity.currentUser.isAuthor()")
+                        a.btn.btn-primary(href="/admin/content" role="button") Content
+
+                    // same for tags and categories here
