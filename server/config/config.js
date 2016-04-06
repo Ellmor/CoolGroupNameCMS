@@ -9,7 +9,7 @@ var prodPort = process.env.PORT || 80;
 
 module.exports = {
     development: {
-        db: 'mongodb://localhost:27017/CoolGroupProjectDB',
+        db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
         rootPath: rootPath,
         port: devPort,
         twitter: {
@@ -53,6 +53,6 @@ module.exports = {
             user: 'test@example.com',
             pass: 'secret',
         },
-        defaultFromAddress: 'First Last <test@examle.com>'
+        defaultFromAddress: 'First Last <test@example.com>'
     }
 }

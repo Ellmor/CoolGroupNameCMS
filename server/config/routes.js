@@ -1,5 +1,4 @@
 var auth = require('./auth');
-var reset = require('./passwordReset');
 var users = require('./api/user.api');
 var content = require('./api/content.api');
 
@@ -13,14 +12,11 @@ module.exports = function (app) {
 
     //Route for reset tokens (links send to Mails)
 
-    app.post('/forgotPassword', reset.passwordRecovery);
-    app.get('/reset/:token', reset.checkAndRedirect);
-
     app.post('/logout', function (req, res) {
         req.logOut();
         res.end();
     });
-
+//
     //Local Auth
     app.post('/login', auth.authenticate);
 

@@ -59,9 +59,9 @@
                 controller: 'passwordRecoveryController',
                 controllerAs: 'vm'
             })
-            .when('/passwordReset', {
+            .when('/reset/:token', {
                 templateUrl: '/partials/password-recovery/password-reset',
-                controller: 'passwordRecoveryController',
+                controller: 'passwordResetController',
                 controllerAs: 'vm'
             })
             .otherwise('/');
