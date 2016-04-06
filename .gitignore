@@ -1,7 +1,3 @@
 .idea
 node_modules
-<<<<<<< HEAD
-*.html
-=======
->>>>>>> master
 *.html
