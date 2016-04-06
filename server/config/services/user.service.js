@@ -101,36 +101,33 @@ module.exports.saveOAuthUserProfile = function(req, profile, done) {
 };
 
 module.exports.passwordRecovery = function(req, res, next) {
-    console.log(req);
+
     async.waterfall([
         function(done) {
+            //creating token
             crypto.randomBytes(20, function(err, buf) {
                 var token = buf.toString('hex');
                 done(err, token);
             });
         },
         function(token, done) {
-            console.log('function nr 1');
-            console.log(req.body.username);
+            //Finds user user and saves the generated token in the DB
             User.findOne({username: req.body.username }, function(err, user) {
                 if (!user) {
-                    //req.flash('error', 'No account with that email address exists.');
                     console.log('No account with that email address exists.');
-                    return res.json({success: false, message: 'No account with that email address exists.'});
+                    res.json({success:false, message: 'The account could not be found. Please repeat the password Recovery or contact the aadministrator'});
+                } else {
+                    user.resetPasswordToken = token;
+                    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+                    user.save(function(err) {
+                        done(err, token, user);
+                    });
                 }
-
-                console.log(token);
-                user.email = req.body.email;
-                user.resetPasswordToken = token;
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-                user.save(function(err) {
-                    done(err, token, user);
-                });
             });
         },
         function(token, user, done) {
-            console.log('function nr 2');
+            //Send Email to user with the link to reset the password
             var smtpTransport = nodemailer.createTransport({
                 service: "Gmail",
                 auth: {
@@ -149,48 +146,40 @@ module.exports.passwordRecovery = function(req, res, next) {
             };
             smtpTransport.sendMail(mailOptions, function(err) {
                 console.log('An e-mail has been sent to ' + user.email + ' with further instructions.');
-                //done(err, 'done');
-                res.json({success:true, message: 'An e-mail has been sent to ' + user.email + ' with further instructions.'});
+                done(err, user, 'done');
             });
         }
-    ], function(err) {
+    ], function(err, user) {
         if (err) return next(err);
-        res.redirect('/passwordRecovery');
+        res.json({success:true, message: 'An e-mail has been sent to ' + user.email + ' with further instructions.'});
     });
 };
 
 module.exports.passwordReset = function(req, res) {
-    console.log('passwordReset');
     async.waterfall([
         function(done) {
-            console.log('passwordReset - function1 ');
-            console.log(req.body);
             //find a user which owns the token
             User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
                 //if user was not found redirect back to password recovery
                 if (!user) {
                     console.log('Error: Password reset token is invalid or has expired.');
-                    return res.redirect('/passwordRecovery');
+                    res.json({success:true, message: 'No user could be found'});
+                } else {
+                    var salt = authService.createSalt();
+                    var hash = authService.hashPwd(salt, req.body.password);
+
+                    user.salt = salt;
+                    user.hashed_pwd = hash;
+                    user.resetPasswordToken = undefined;
+                    user.resetPasswordExpires = undefined;
+
+                    user.save(function(err) {
+                        done(err, user);
+                    });
                 }
-
-                var salt = authService.createSalt();
-                var hash = authService.hashPwd(salt, req.body.password);
-
-                user.salt = salt;
-                user.hashed_pwd = hash;
-                user.resetPasswordToken = undefined;
-                user.resetPasswordExpires = undefined;
-
-                user.save(function(err) {
-                    console.log("saving user here");
-                    //req.logIn(user, function(err) {
-                    done(err, user);
-                    //});
-                });
             });
         },
         function(user, done) {
-            console.log("password reset = function 2");
             var smtpTransport = nodemailer.createTransport('SMTP', {
                 service: 'Gmail',
                 auth: {
@@ -207,13 +196,10 @@ module.exports.passwordReset = function(req, res) {
             };
             smtpTransport.sendMail(mailOptions, function(err) {
                 console.log('Success! Your password has been changed.');
-                //done(err, 'done');
-                res.json({success:true, message: 'Success! Your password has been changed.'});
-
-                //done(err);
+                done(err, 'done');
             });
         }
     ], function(err) {
-        res.redirect('/');
+            res.json({success:true, message: 'Success! Your password has been changed.'});
     });
 };

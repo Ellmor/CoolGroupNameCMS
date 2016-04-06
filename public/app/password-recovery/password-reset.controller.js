@@ -8,7 +8,7 @@
         .module('app')
         .controller('passwordResetController', passwordResetController);
 
-    function passwordResetController($scope, userService, mvNotifier, helperService, $routeParams) {
+    function passwordResetController(userService, mvNotifier, $routeParams, $location) {
         var vm = this;
 
         vm.title = "Password Reset";
@@ -28,6 +28,7 @@
                     console.log(responce);
                     if(responce.success){
                         mvNotifier.notify(responce.message);
+                        $location.path('/');
                     } else {
                         mvNotifier.notify(responce.message);
                     }
