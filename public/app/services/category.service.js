@@ -8,13 +8,15 @@
     function categoryService($http){
 
         var getCategories = function(){
-            return $http.get("/api/categories/")
+            return $http.get("/api/categories")
                 .then(function(response){
+
                     return response.data;
                 })
         };
 
         var  getCategory = function(categoryid){
+
             return $http.get("/api/categories/" + categoryid)
                 .then(function (response) {
                     return response.data;
@@ -35,6 +37,7 @@
             return $http.delete("/api/categories/" + categoryid)
                 .then(function (response) {
                     return response.data;
+
                 })
 
 

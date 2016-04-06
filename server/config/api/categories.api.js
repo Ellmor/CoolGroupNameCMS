@@ -18,7 +18,8 @@ router.post('/', function(req, res){
     if(!req.content)(
         req.content = {_id: "undefined", title: "undefined", headline: "undefined", author: "undefined"}
     )
-    categorytService.createCategory(req.content, req.body, function(response){
+    categoryService.createCategory(req.content, req.body, function(response){
+        console.log(req.body);
         if(response.success) {
             res.json(response.data)
         }
@@ -52,8 +53,11 @@ router.get('/:categoryid', function(req,res, next){
 
 /*Delete category*/
 router.delete('/:categoryid', function(req,res,next){
+
     var categoryid = req.params.categoryid;
+
     Category.remove({_id:categoryid}, function (err){
+
             if(err) {
                 //if there is an error return error message
                 res.json({success:false, message:"Error", details: err});

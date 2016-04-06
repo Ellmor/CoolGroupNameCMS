@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 var jsFiles = ['*.js', 'server/**/*.js'];
 
@@ -12,6 +14,18 @@ gulp.task('style', function () {
             verbose: true
         }))
         .pipe(jscs());
+});
+
+gulp.task('ugly', function(){
+   return gulp.src(['./public/app/js/fun_gulp.js','./public/app/js/gulp_fun.js','./public/app/js/multipleselect.jquery.js'])
+       .pipe(uglify())
+       .pipe(gulp.dest('./public/vendor/bootstrap/dist/js/play-gulp'));
+});
+
+gulp.task('concatenate', function(){
+   return gulp.src(['./public/app/js/fun_gulp.js','./public/app/js/gulp_fun.js','./public/app/js/multipleselect.jquery.js'])
+       .pipe(concat('all.js'))
+       .pipe(gulp.dest('./public/vendor/bootstrap/dist/js/play-gulp'));
 });
 
 gulp.task('inject', function () {
@@ -84,4 +98,6 @@ gulp.task('serve', ['style', 'inject'], function () {
         .on('restart', function (ev) {
             console.log('Restarting....');
         });
+
 });
+gulp.task('default',['serve','ugly','concatenate']);

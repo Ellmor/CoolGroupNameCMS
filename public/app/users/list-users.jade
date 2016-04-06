@@ -1,8 +1,8 @@
-.container(ng-controller='userController')
+.container
     .row
         h1 Admin Panel with CRUD functionality
 
-        table.table.table-bordered(ng-model="Users", ng-init="getUsers()")
+        table.table.table-bordered(ng-init="getUsers()")
             thead
                 th Name
                 th Login Medium

@@ -7,7 +7,7 @@ var Category = require('../../models/category');
 module.exports.createCategory = function createCategory(content, categoryModel, callback) {
     if(content){
         var category = {
-            name: categorytModel.name || "undefined",
+            name: categoryModel.name || "undefined",
 
         };
 

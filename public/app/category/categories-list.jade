@@ -1,20 +1,30 @@
 //
    Created by D'oh on 4/5/16.
 
-.container(ng-model='categoryController')
+.container
     .row
 
-        table.table.table-bordered(ng-model="Categories", ng-init="getCategories()")
+        table.table.table-bordered
             thead
                 th Name
                 th Date
                 th Edit
                 th Delete
             tbody
-                tr(ng-repeat="category in Categories")
-                    td {{ category.Name }}
-                    td {{ category.createDate }}
+                tr(ng-repeat="cat in Categories")
+                    td {{ cat.name }}
+                    td {{ cat.createDate }}
                     td
-                        a.btn.btn-success.btn-block Edit
+                        a.btn.btn-success.btn-block(href="/admin/categories/edit/{{cat._id}}") Edit
                     td
-                        button.btn.btn-danger.btn-block(ng-click="deleteCategory(category._id)") Delete
+                        button.btn.btn-danger.btn-block(ng-click="deleteCategory(cat._id)") Delete
+
+            h2 Create categories
+
+                div.form-group
+                    form
+                        div.form-group
+                            label(for="name") Category Name
+                                input#name.form-control(type="text", name="name", placeholder="Name", ng-model="cat.name", autofocus)
+
+                            button.btn.btn-small.btn-warning(ng-click="createCategory(cat)") Create Category

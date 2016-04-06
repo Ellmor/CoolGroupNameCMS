@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var categorySchema = mongoose.Schema({
 
+    createDate: { type: Date, default: Date.now },
     name: String
 
 });

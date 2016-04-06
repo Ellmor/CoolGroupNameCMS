@@ -54,6 +54,13 @@
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
             })
+            .when('/admin/categories/edit/:categoryid',{
+                templateUrl: '/partials/category/categories-edit',
+                controller: 'categoryController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
+
+            })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
                 controller: 'commentatorController',
