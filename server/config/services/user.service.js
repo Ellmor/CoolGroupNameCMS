@@ -18,10 +18,10 @@ module.exports.createUser = function createUser(userModel, callback) {
         username: userModel.username,
         salt: salt,
         hashed_pwd: hash,
-        roles: ["commentator"]
+        roles: userModel.roles
     };
 
-    //creating passing object to mongoose shema
+    //creating passing object to mongoose schema
     var newUser = new User(user);
 
     //saving user to database

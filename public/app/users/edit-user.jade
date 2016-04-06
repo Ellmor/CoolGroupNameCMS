@@ -7,6 +7,13 @@
                     input#name.form-control(type="text", name="name", placeholder="Name", ng-model="User.username", autofocus)
 
             div.form-group
+                form
+                    select#role-selection(multiple="multiple", ng-model="user.roles")
+                        option(value="admin") Admin
+                        option(value="author") Author
+                        option(value="commentator") Commentator
+
+            div.form-group
                 label(for="password") Password
                     input#password.form-control(type="text", name="password", placeholder="Password", ng-model="User.password")
             div.form-group

@@ -1,6 +1,7 @@
 var auth = require('./auth');
 var users = require('./api/user.api');
 var content = require('./api/content.api');
+var categories = require('./api/categories.api.js');
 
 
 module.exports = function (app) {
@@ -35,10 +36,11 @@ module.exports = function (app) {
     //API ROUTE SETUP
     app.use('/api/users/', users);
     app.use('/api/content/', content);
+    app.use('/api/categories/', categories);
 
     app.get('*', function (req, res) {
         res.render('index', {
             bootstrappedUser: req.user
         });
     });
-}
+};
