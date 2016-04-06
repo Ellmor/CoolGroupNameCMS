@@ -7,9 +7,12 @@
         button.btn.btn-primary(ng-click="signin(username,password)") Sign in
         //OAuth is called directly. target="_self" makes sure that the server is targeted directly.
         //(without this Angular Routing takes over)
-        a.btn.btn-info(target="_self" href="/oauth/twitter" rolenodemon ="button") Twitter
-        a.btn.btn-info(target="_self" href="/oauth/facebook" role ="button") Facebook
-        a.btn.btn-info(target="_self" href="/oauth/google" role="button") Google
+        a.btn.btn-social-icon.btn-md.btn-twitter(target="_self" href="/oauth/twitter" rolenodemon ="button")
+            i.fa.fa-twitter
+        a.btn.btn-social-icon.btn-md.btn-facebook(target="_self" href="/oauth/facebook" role ="button")
+            i.fa.fa-facebook
+        a.btn.btn-social-icon.btn-md.btn-google(target="_self" href="/oauth/google" role="button")
+            i.fa.fa-google
         a.btn.btn-primary(href="/signup" role="button" ng-hide="navVM.isActive('/signup')") New User
         a.btn.btn-default(href="/passwordRecovery" role="button" ng-hide="navVM.isActive('/passwordRecovery')") Psw Recovery
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")

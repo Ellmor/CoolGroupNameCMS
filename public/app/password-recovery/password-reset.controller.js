@@ -22,10 +22,10 @@
             console.log('resetPassword');
             console.log(password);
             userModel.password = password
-            console.log(userModel);
+            //console.log(userModel);
             userService.resetPassword(userModel).then(
                 function(responce){
-                    console.log(responce);
+                    //console.log(responce);
                     if(responce.success){
                         mvNotifier.notify(responce.message);
                         $location.path('/');

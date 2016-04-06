@@ -36,11 +36,12 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "~1.0.2",
     "gulp-jshint": "^2.0.0"
-
   },
   "devDependencies": {
     "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
     "bower": "^1.7.7",
+    "font-awesome": "^4.5.0",
     "gulp": "^3.9.1",
     "gulp-inject": "^4.0.0",
     "gulp-jscs": "^3.0.2",

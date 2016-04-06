@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     service = require('./services/auth.service'),
-    userService = require('./services/user.service'),
+
     User = require('../models/user'),
     Content = require('../models/content'),
     Category = require('../models/category');
