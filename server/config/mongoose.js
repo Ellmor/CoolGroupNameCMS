@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     service = require('./services/auth.service'),
     userService = require('./services/user.service'),
     User = require('../models/user'),
-    Content = require('../models/content');
+    Content = require('../models/content'),
+    Category = require('../models/category');
 
 module.exports = function (config) {
 
@@ -21,9 +22,9 @@ module.exports = function (config) {
             salt = service.createSalt();
             hash = service.hashPwd(salt, 'admin');
             User.create({
-                firstName: "Admin",
-                lastName: "none",
-                username: "Admin",
+                firstName: 'Admin',
+                lastName: 'none',
+                username: 'Admin',
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ["admin"]
@@ -31,7 +32,7 @@ module.exports = function (config) {
             salt = service.createSalt();
             hash = service.hashPwd(salt, 'nezi12');
             User.create({
-                firstName: "Piotr",
+                firstName: 'Piotr',
                 lastName: "Suski",
                 username: "Ellmor",
                 salt: salt,
@@ -86,6 +87,25 @@ module.exports = function (config) {
             }];
 
             Content.create(content);
+        }
+    });
+    Category.find({}).exec(function (err, collection) {
+        if (collection.length === 0) {
+
+            var category = [{
+                "name": "Introducing Amsterdam",
+
+            },
+                {
+                    "name": "Toronto",
+
+                },
+                {
+                    "name": "Introducing Tibet",
+
+                }];
+
+            Category.create(category);
         }
     });
 

@@ -2,6 +2,7 @@
     .row
         form(name="signUpForm")
             div.form-group
+                h3(ng-model="user.roles.commentator") Create a commentor profile here
                 label(for="name") Username
                     input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus, required)
                     span.text-danger(ng-show="signUpForm.name.$error.required") Name is required.

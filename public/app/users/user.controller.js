@@ -1,4 +1,4 @@
-(function () {
+    (function () {
     "use strict";
 
     angular
@@ -47,17 +47,17 @@
 
         $scope.deleteUser = function (userid) {
             userService.deleteUser(userid).then(
-                function(responce){
+                function(response){
                     //if the user was deleted
-                    if(responce.success){
+                    if(response.success){
                         //notify thet the user was deleted
-                        mvNotifier.notify(responce.message);
+                        mvNotifier.notify(response.message);
                         //get the new list of users and add it to the scope.
                         userService.getUsers()
                             .then(modelUsers);
                     //otherwise show error message and do nothing.
                     } else {
-                        mvNotifier.notify(responce.message);
+                        mvNotifier.notify(response.message);
                     }
                 }
             );

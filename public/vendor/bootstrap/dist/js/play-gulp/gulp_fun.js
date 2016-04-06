@@ -1,0 +1,1 @@
+function sayHello(){document.write("Hello there!")}console.log(sayHello);
