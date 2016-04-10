@@ -8,11 +8,34 @@ var Content = require('../../models/content');
 var contentService = require('../services/content.service');
 
 /* GET content listing. */
+
+
+router.get('/published/10newest', function(req, res, next) {
+    console.log("TEST");
+    Content.find({'state': 'draft'}).sort('-createDate').exec(
+        function (err, results){
+            res.json(results);
+        });
+});
+
+router.get('/published', function(req, res, next) {
+    Content.find().sort('-createDate').exec(
+        function (err, results){
+            res.json(results);
+        });
+});
+
+/*Get Content */
+router.get('/:contentid', function(req,res, next){
+    var contentid = req.params.contentid;
+    Content.findOne({_id:contentid}, function(err, results){res.json(results);});
+});
+
 router.get('/', function(req, res, next) {
     console.log("req.user");
-    console.log(req.user);
-    Content.find(function (err, results){console.log(results); res.json(results);});
+    Content.find(function (err, results){res.json(results);});
 });
+
 
 /*Create content*/
 router.post('/', function(req, res){
@@ -46,11 +69,7 @@ router.put('/:contentid', function(req,res,next){
     });
 });
 
-/*Get Content */
-router.get('/:contentid', function(req,res, next){
-    var contentid = req.params.contentid;
-    Content.findOne({_id:contentid}, function(err, results){res.json(results);});
-});
+
 
 /*Delete content*/
 router.delete('/:contentid', function(req,res,next){

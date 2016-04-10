@@ -23,13 +23,18 @@
         $routeProvider
             .when('/', {
                 templateUrl: '/partials/main/main',
-                controller: 'mvMainCtrl',
-                controllerAs: 'vm'
+                controller: 'MainCtrl',
+                controllerAs: 'main'
             })
             .when('/signup', {
                 templateUrl: '/partials/signup/signup',
                 controller: 'signUpController',
                 controllerAs: 'vm'
+            })
+            .when('/article/:id', {
+                templateUrl: '/partials/main-subpage/article',
+                controller: 'SubpageController',
+                controllerAs: 'page'
             })
             .when('/admin', {
                 templateUrl: '/partials/dashboard/dashboard',

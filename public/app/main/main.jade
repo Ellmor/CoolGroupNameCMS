@@ -1,10 +1,9 @@
-.container
+.container(ng-init="main.getContent()")
     .jumbotron
-        h1 Some big text
-        p Here goes the rest of that text.
+        a(href="/article/{{main.Content[0]._id}}")
+            h1(ng-bind="main.Content[0].title")
+        p(ng-bind="main.Content[0].headline")
 
     .row
         .col-md-6
-            div(ng-include="'/partials/main/featured-courses'")
-        .col-md-6
-            div(ng-include="'/partials/main/new-courses'")
+            div(ng-include="'/partials/main/new-content'")
