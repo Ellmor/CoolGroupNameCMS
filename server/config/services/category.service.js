@@ -14,7 +14,7 @@ module.exports.createCategory = function createCategory(content, categoryModel, 
         //creating passing object to mongoose schema
         var newCategory = new Category(category);
 
-        //saving user to database
+        //saving category to database
         newCategory.save(function(err, category){
             if(err) {
                 callback({success: false, message: "Error"});

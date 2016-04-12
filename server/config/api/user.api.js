@@ -5,7 +5,7 @@ var service = require('../services/auth.service');
 var userService = require('../services/user.service');
 var auth = require('../auth');
 
-console.log('users.api');
+//console.log('users.api');
 /* GET users listing. */
 router.get('/', auth.requiresRole("admin"), function(req, res, next) {
     User.find(function (err, results){res.json(results);});
@@ -22,7 +22,7 @@ router.post('/', function(req, res){
     
     else { //if values are valid
         userService.createUser(req.body, function(response){
-            console.log(response);
+            //console.log(response);
             if(response.success) {
                 res.json(response.data)
             }
