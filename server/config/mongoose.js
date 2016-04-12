@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
 
     User = require('../models/user'),
     Content = require('../models/content'),
-    Category = require('../models/category');
+    Category = require('../models/category'),
+    Tag = require('../models/tag');
 
 module.exports = function (config) {
 
@@ -108,6 +109,19 @@ module.exports = function (config) {
             Category.create(category);
         }
     });
+    Tag.find({}).exec(function(err, collection){
+        if (collection.length === 0){
+            var tag = [{
+             "name": "Travel",
+            },{
+             "name": "Cities",
+            },{
+             "name": "Random",
+            }];
+
+            Tag.create(tag);
+        }
+    })
 
     var findUser = function (username){
         var user = User.findOne({username: username});

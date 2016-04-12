@@ -18,10 +18,10 @@
 
             categoryService.getCategories()
                 .then(function(data){
-                    console.log(data);
+                    //console.log(data);
                     $scope.Categories = data;
                 });
-            console.log("categories")
+            //console.log("categories")
         }
 
         var modelCategories = function (data) {
@@ -54,7 +54,7 @@
         }
 
         $scope.deleteCategory = function(categoryid){
-            console.log(categoryid);
+            //console.log(categoryid);
             categoryService.deleteCategory(categoryid).then(
                     function (response) {
 
