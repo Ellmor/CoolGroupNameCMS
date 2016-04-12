@@ -2,6 +2,10 @@
    Created by D'oh on 4/5/16.
 
 .container
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
     .row
 
         table.table.table-bordered
@@ -11,7 +15,7 @@
                 th Edit
                 th Delete
             tbody
-                tr(ng-repeat="cat in Categories")
+                tr(ng-repeat="cat in Categories | filter: searchText")
                     td {{ cat.name }}
                     td {{ cat.createDate | date:'medium'}}
                     td
