@@ -1,0 +1,35 @@
+//
+   Created by D'oh on 4/12/16.
+
+.container
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+            .form-group
+                select.from-control(ng-model="sortOrder", ngOptions="item.value as item.text in sortOptions")
+    .row
+
+        table.table.table-bordered
+            thead
+                th Name
+                th Date
+                th Edit
+                th Delete
+            tbody
+                tr(ng-repeat="tag in Tags | filter:searchText | orderBy: sortOrder")
+                    td {{ tag.name}}
+                    td {{ tag.createDate | date:'medium' }}
+                    td
+                        a.btn.btn-success.btn-block(href="/admin/tags/edit/{{tag._id}}") Edit
+                    td
+                        button.btn.btn-danger.btn-block(ng-click="deleteTag(tag._id)") Delete
+
+
+            div.form-group
+                form
+                    div.form-group
+                        label(for="tagName") Tag Name
+                            input#tagName.form-control(type="text", name="tagName", placeholder="Name", ng-model="tag.name", autofocus)
+
+                        button.btn.btn-small.btn-warning(ng-click="createTag(tag)") Create Tag

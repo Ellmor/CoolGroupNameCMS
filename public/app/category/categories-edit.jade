@@ -4,7 +4,7 @@
     .row
         form(ng-init="getCategory(vm.categoryId)")
             div.form-group
-                p {{vm.categoryId}}
+                p {{Category.name}}
                 label(for="catName") Name
                 input#catName.form-control(type="text", name="catName", placeholder="Name", ng-model="Category.name", autofocus)
                 button.btn.btn-small.btn-primary(ng-click="updateCategory(Category)") Update Category

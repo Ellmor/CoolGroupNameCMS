@@ -1,4 +1,8 @@
 .container(ng-controller='userController')
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
     .row
         h1 Admin Panel with CRUD functionality
 
@@ -12,7 +16,7 @@
                 th Update
                 th Delete
             tbody
-                tr( ng-repeat="user in Users")
+                tr( ng-repeat="user in Users | filter:searchText")
                     td {{user.firstName + "-" + user.lastName}}
                     td {{user.provider}}
                     td {{user.username}}

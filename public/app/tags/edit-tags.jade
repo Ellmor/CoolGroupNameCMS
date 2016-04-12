@@ -1,0 +1,12 @@
+//
+   Created by D'oh on 4/12/16.
+
+.container
+
+    .raw
+        form(ng-init="getTag(vm.tagId)")
+            div.form-group
+                p {{vm.Tag.name}}
+                label(for="tagName") Name
+                input#tagName.form-control(type="text", name="tagName", placeholder="Name", ng-model="Tag.name", autofocus)
+                button.btn.btn-small.btn-primary(ng-click="updateTag(Tag)") Update Tag
