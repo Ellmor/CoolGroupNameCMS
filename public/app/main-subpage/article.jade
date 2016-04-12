@@ -2,5 +2,27 @@
     .row
         h1(ng-bind="page.Article.title")
         h4(ng-bind="page.Article.headline")
+        p Category:
+            a(ng-click="") {{ page.Article.category }}
+        p Tags:
+            i(ng-repeat="tag in page.Article.tags")
+                a(ng-click="") {{ tag }}
+                i ,
         i {{'Date:' + (page.Article.createDate | date) + ((page.Article.author.username == NaN)? ', Author: ' + page.Article.author.username : '')}}
         p(ng-bind="page.Article.content")
+
+    .row
+        h4 Comment Seaction
+        .panel.panel-default.col-md-6(ng-repeat="comment in page.Article.comments")
+            .panel-body
+                p {{comment.date | date}}
+                p {{comment.body}}
+
+    .row(ng-show="page.identity.isAuthenticated()")
+        h4 Your Comment
+        .col-md-6
+            form
+                div.form-group
+                    input#comment.form-control(type="textarea", name="comment", placeholder="Comment", ng-model="page.Comment", autofocus)
+
+            button.btn.btn-sm.btn-default(ng-click="page.addComment(page.Comment)") Add

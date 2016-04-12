@@ -9,17 +9,25 @@
 
         vm.isActive = helperService.isActive;
 
-        vm.title = "welcome";
+        var Content = {};
         vm.Content = {};
+        vm.filters = {
+            numberOfArticles: 3
+        }
 
-        var modelContent5newest = function (data) {
+        var modelContent = function (data) {
             console.log(data);
-            vm.Content = data.slice(0,3);
+            Content = data;
+            vm.sliceContent(vm.filters.numberOfArticles);
+        }
+
+        vm.sliceContent = function(numberOfArticles){
+            vm.Content = Content.slice(0, numberOfArticles);
         }
 
         vm.getContent = function () {
             contentService.getContent_Published()
-                .then(modelContent5newest);
+                .then(modelContent);
         }
     }
 

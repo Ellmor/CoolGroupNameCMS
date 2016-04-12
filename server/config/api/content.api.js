@@ -10,16 +10,15 @@ var contentService = require('../services/content.service');
 /* GET content listing. */
 
 
-router.get('/published/10newest', function(req, res, next) {
-    console.log("TEST");
-    Content.find({'state': 'draft'}).sort('-createDate').exec(
+router.get('/published/newest', function(req, res, next) {
+    Content.find({'state': 'published'}).sort('-createDate').exec(
         function (err, results){
             res.json(results);
         });
 });
 
 router.get('/published', function(req, res, next) {
-    Content.find().sort('-createDate').exec(
+    Content.find({'state': 'published'}).exec(
         function (err, results){
             res.json(results);
         });

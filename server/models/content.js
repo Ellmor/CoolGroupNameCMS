@@ -10,6 +10,7 @@ var contentSchema = mongoose.Schema({
     comments: [{ body: String, date: Date }],
     createDate: { type: Date, default: Date.now },
     lastEditedDate: { type: Date, default: Date.now },
+    category: String,
     tags: { type: [String], index: true },
     meta: {
         votes: Number,
