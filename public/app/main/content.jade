@@ -1,0 +1,9 @@
+.panel.panel-primary
+    .panel-heading.text-center New Articles
+    .panel-body
+        div(ng-repeat="item in main.Content")
+            a(href="article/{{item._id}}")
+                h3(ng-bind="item.title")
+            i {{item.createDate | date}}
+            p(ng-bind="item.content")
+            p(ng-bind="item.state")

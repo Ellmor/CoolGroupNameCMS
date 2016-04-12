@@ -1,0 +1,6 @@
+.container(ng-init="page.getContent(page.Article._id)")
+    .row
+        h1(ng-bind="page.Article.title")
+        h4(ng-bind="page.Article.headline")
+        i {{'Date:' + (page.Article.createDate | date) + ((page.Article.author.username == NaN)? ', Author: ' + page.Article.author.username : '')}}
+        p(ng-bind="page.Article.content")
