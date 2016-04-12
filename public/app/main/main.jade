@@ -5,5 +5,8 @@
         p(ng-bind="main.Content[0].headline")
 
     .row
-        .col-md-6
-            div(ng-include="'/partials/main/new-content'")
+        .col-md-12
+            div(ng-include="'/partials/main/filters'")
+    .row
+        .col-md-12
+            div(ng-include="'/partials/main/content'")
