@@ -62,6 +62,18 @@
                 resolve: routeRoleChecks.admin
 
             })
+            .when('/admin/tags',{
+                templateUrl: 'partials/tags/tags-list',
+                controller: 'tagController',
+                controllerAs: 'vm',
+                resolve:routeRoleChecks.admin
+            })
+            .when('/admin/tags/edit/:tagid',{
+                templateUrl: 'partials/tags/edit-tags',
+                controller: 'tagController',
+                controllerAs: 'vm',
+                resolve:routeRoleChecks.admin
+            })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
                 controller: 'commentatorController',

@@ -6,7 +6,7 @@ var Tag = require('../../models/tag');
 module.exports.createTag = function (content, tagModel, callback) {
     if(callback){
         var tag ={
-            name: tagModel.name || 'undefined',
+            name: tagModel.name || "undefined",
         };
 
         //creating passing object to mongoose schema
@@ -27,7 +27,7 @@ module.exports.updateTag = function updateTag(tagId, content, tagModel, callback
     Tag.findById(tagId, function(err, tagItem){
         if(err){callback({success:false, message: 'Error'});}
 
-
+        console.log(tagItem.name);
         tagItem.name = tagModel.name || 'undefined';
         tagItem.save(function(err){
             if(err){

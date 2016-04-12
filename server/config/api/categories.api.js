@@ -9,7 +9,9 @@ var categoryService = require('../services/category.service');
 /* GET category listing. */
 router.get('/', function(req, res, next) {
 
-    Category.find(function (err, results){console.log(results); res.json(results);});
+    Category.find(function (err, results){
+        //console.log(results);
+        res.json(results);});
 });
 
 /*Create category*/
@@ -19,7 +21,7 @@ router.post('/', function(req, res){
         req.content = {_id: "undefined", title: "undefined", headline: "undefined", author: "undefined"}
     )
     categoryService.createCategory(req.content, req.body, function(response){
-        console.log(req.body);
+        //console.log(req.body);
         if(response.success) {
             res.json(response.data)
         }
@@ -36,7 +38,7 @@ router.put('/:categoryid', function(req,res,next){
         req.content = {_id: "undefined", title: "undefined", headline: "undefined", author: "undefined"}
     )
     categoryService.updateCategory(req.params.categoryid, req.content, req.body, function(response){
-        console.log(response);
+        //console.log(response);
         if(response.success) {
             res.send(response.data);
         } else {
