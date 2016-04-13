@@ -89,7 +89,6 @@ module.exports.saveOAuthUserProfile = function(req, profile, done) {
                         if (err) {
                             var message = _this.getErrorMessage(err);
 
-                            req.flash('error', message);
                             return res.redirect('/signup');
                         }
 
@@ -115,11 +114,13 @@ module.exports.passwordRecovery = function(req, res, next) {
         },
         function(token, done) {
             //Finds user user and saves the generated token in the DB
+            console.log(req.body);
             User.findOne({username: req.body.username }, function(err, user) {
                 if (!user) {
                     console.log('No account with that email address exists.');
                     res.json({success:false, message: 'The account could not be found. Please repeat the password Recovery or contact the aadministrator'});
                 } else {
+                    user.email = user.email || req.body.email;
                     user.resetPasswordToken = token;
                     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
@@ -131,11 +132,14 @@ module.exports.passwordRecovery = function(req, res, next) {
         },
         function(token, user, done) {
             //Send Email to user with the link to reset the password
+            console.log(token);
+            console.log(user);
+
             var smtpTransport = nodemailer.createTransport({
                 service: "Gmail",
                 auth: {
-                    user: "cqtkbnns@gmail.com",
-                    pass: "cqtkbnns1234"
+                    user: "cnsvsjmggw@gmail.com",
+                    pass: "cnsvsjmggw1234"
                 }
             });
             var mailOptions = {
