@@ -2574,7 +2574,7 @@ function publishExternalAPI(angular) {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *     Any commits to this file should be reviewed with security in mind.  *
  *   Changes to this file can potentially create security vulnerabilities. *
- *          An approval from 2 Core members with history of modifying      *
+ *          An approval from 2 Core author with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
  *  Does the change somehow allow for arbitrary javascript to be executed? *
@@ -6519,7 +6519,7 @@ function $TemplateCacheProvider() {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *     Any commits to this file should be reviewed with security in mind.  *
  *   Changes to this file can potentially create security vulnerabilities. *
- *          An approval from 2 Core members with history of modifying      *
+ *          An approval from 2 Core author with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
  *  Does the change somehow allow for arbitrary javascript to be executed? *
@@ -13249,7 +13249,7 @@ function $LogProvider() {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *     Any commits to this file should be reviewed with security in mind.  *
  *   Changes to this file can potentially create security vulnerabilities. *
- *          An approval from 2 Core members with history of modifying      *
+ *          An approval from 2 Core author with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
  *  Does the change somehow allow for arbitrary javascript to be executed? *
@@ -17316,7 +17316,7 @@ function $$SanitizeUriProvider() {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *     Any commits to this file should be reviewed with security in mind.  *
  *   Changes to this file can potentially create security vulnerabilities. *
- *          An approval from 2 Core members with history of modifying      *
+ *          An approval from 2 Core author with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
  *  Does the change somehow allow for arbitrary javascript to be executed? *

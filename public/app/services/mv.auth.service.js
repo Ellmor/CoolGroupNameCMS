@@ -33,7 +33,8 @@
                 if(mvIdentity.isAuthorized(role)){
                     return true;
                 } else {
-                    return $q.reject('not authorized');
+                    //return $q.reject('not authorized');
+                    return false;
                 }
             }
 

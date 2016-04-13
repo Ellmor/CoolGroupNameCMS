@@ -1,52 +1,56 @@
-(function(){
+(function () {
 
     angular
         .module('app')
         .factory('contentService', contentService);
 
-    function contentService($http){
+    function contentService($http) {
 
-        var getContents = function(){
+        var getContents = function () {
             return $http.get("/api/content")
-                .then(function(response){
+                .then(function (response) {
                     return response.data;
                 })
         };
 
-        var getContent = function(contentid){
+        var getContent = function (contentid) {
             return $http.get("/api/content/" + contentid)
-                .then(function(response){
+                .then(function (response) {
                     return response.data;
                 })
         };
 
-        var createContent = function(content){
-            return $http.post("/api/content", content)
-                .then(function(response){
-                    return response.data;
-                })
-        };
-
-        var deleteContent = function(contentid){
-            return $http.delete("/api/content/" + contentid)
-                .then(function(response){
-                    return response.data;
-                })
-        };
-
-        var updateContent = function(content){
-            return $http.put("/api/content/" + content._id, {title: content.title, headline: content.headline, content: content.content})
-                .then(function(response){
-                    return response.data;
-                })
-        };
-
-        var getContent_Published = function(){
+        var getContent_Published = function () {
             console.log('getNewestContent');
             return $http.get("/api/content/published")
-                .then(function(response){
+                .then(function (response) {
                     console.log('getNewestContent return');
                     console.log(response);
+                    return response.data;
+                })
+        };
+
+        var createContent = function (content) {
+            return $http.post("/api/content", content)
+                .then(function (response) {
+                    return response.data;
+                })
+        };
+
+        var deleteContent = function (contentid) {
+            return $http.delete("/api/content/" + contentid)
+                .then(function (response) {
+                    return response.data;
+                })
+        };
+
+        var updateContent = function (content) {
+            return $http.put("/api/content/" + content._id, {
+                    title: content.title,
+                    headline: content.headline,
+                    content: content.content
+                })
+                .then(function (response) {
                     return response.data;
                 })
         };
@@ -63,3 +67,4 @@
     }
 
 }());
+

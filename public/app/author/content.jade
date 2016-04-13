@@ -1,0 +1,38 @@
+.container(ng-controller='contentController')
+    .row
+        h2 New Post
+        form
+            div.form-group
+                label(for="title") Title
+                    input.form-control(type="text", id="title", name="title", placeholder="Title", ng-model="content.title", autofocus)
+
+            div.form-group
+                label(for="headline") Headline
+                    input.form-control(type="headline", id="headline", name="headline", placeholder="Headline", ng-model="content.headline")
+
+            div.form-group
+                label(for="article") Article
+                    //input.form-control(type="article", id="article", name="article", placeholder="Article", ng-model="content.content")
+                    textarea.form-control(rows='4', cols='50', id="article", name='article', placeholder="Article", ng-model='Content.content')
+
+            button.btn.btn-small.btn-warning( ng-click="createContent(content)") Create Post
+
+        h2 All Posts
+
+        table.table.table-bordered(ng-model="content", ng-init="getContents()")
+            thead
+                th Title
+                th Headline
+                th Content
+                th Update
+                th Delete
+            tbody
+                tr( ng-repeat="content in Contents")
+                    td {{content.title}}
+                    td {{content.headline}}
+                    td {{content.content}}
+                    td {{content._id}}
+                    td
+                        a.btn.btn-success.btn-block(href="/content/edit/{{content._id}}") Edit
+                    td
+                        button.btn.btn-danger.btn-block(ng-click="deleteContent(content._id)") Delete

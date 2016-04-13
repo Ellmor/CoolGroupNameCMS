@@ -4,7 +4,7 @@
 
     MainCtrl.$inject = ['helperService', 'contentService'];
 
-    function MainCtrl (helperService, contentService) {
+    function MainCtrl(helperService, contentService) {
         var vm = this;
 
         vm.isActive = helperService.isActive;
@@ -21,7 +21,7 @@
             vm.sliceContent(vm.filters.numberOfArticles);
         }
 
-        vm.sliceContent = function(numberOfArticles){
+        vm.sliceContent = function (numberOfArticles) {
             vm.Content = Content.slice(0, numberOfArticles);
         }
 
