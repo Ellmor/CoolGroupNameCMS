@@ -1,0 +1,15 @@
+.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 200px; overflow: hidden")
+    .panel-body
+        .pull-right
+            i.fa.fa-heart(ng-show="item.meta.favs > 0") {{' ' + item.meta.favs + ' '}}
+            i.fa.fa-thumbs-up(ng-show="item.meta.votes > 0") {{' ' + item.meta.votes + ' '}}
+        a(href="article/{{item._id}}")
+            h3(ng-bind="item.title")
+        p Category:
+            a(ng-click="") {{ item.category }}
+        p Tags:
+            i(ng-repeat="tag in item.tags")
+                a(ng-click="") {{ tag }}
+                i ,
+        i {{item.createDate | date}}
+        p.article(ng-bind="item.content")

@@ -5,6 +5,7 @@ var service = require('../services/auth.service');
 var userService = require('../services/user.service');
 var auth = require('../auth');
 
+//console.log('users.api');
 /* GET users listing. */
 router.get('/', auth.requiresRole("admin"), function(req, res, next) {
     User.find(function (err, results){res.json(results);});
@@ -21,7 +22,7 @@ router.post('/', function(req, res){
     
     else { //if values are valid
         userService.createUser(req.body, function(response){
-            console.log(response);
+            //console.log(response);
             if(response.success) {
                 res.json(response.data)
             }
@@ -37,7 +38,8 @@ router.get('/:userid', function(req,res, next){
     var userid = req.params.userid;
     User.findOne({_id:userid}, function(err, results){res.json(results);});
 });
-
+/*Reset Password*/
+router.put('/resetPassword', userService.passwordReset);
 /*Update user*/
 router.put('/:userid', function(req,res,next){
 
@@ -65,5 +67,10 @@ router.delete('/:userid', function(req,res,next){
         }
     );
 });
+
+
+router.post('/forgotPassword', userService.passwordRecovery);
+
+
 
 module.exports = router;

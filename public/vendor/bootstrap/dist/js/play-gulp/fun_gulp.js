@@ -1,0 +1,1 @@
+function myFunction(n,t){return n*t}var x=myFunction(4,3);

@@ -30,20 +30,20 @@
         $routeProvider
             .when('/', {
                 templateUrl: '/partials/main/main',
-                controller: 'mvMainCtrl',
-                controllerAs: 'vm'
+                controller: 'MainCtrl',
+                controllerAs: 'main'
             })
             .when('/signup', {
                 templateUrl: '/partials/signup/signup',
                 controller: 'signUpController',
                 controllerAs: 'vm'
             })
-           /* .when('/admin', {
-                templateUrl: '/partials/dashboard/dashboard',
-                controller: 'dashboardController',
-                controllerAs: 'vm',
-                resolve: routeRoleChecks.admin
-            })*/
+
+            .when('/article/:id', {
+                templateUrl: '/partials/main-subpage/article',
+                controller: 'SubpageController',
+                controllerAs: 'page'
+            })
             .when('/admin/users', {
                 templateUrl: '/partials/users/list-users',
                 controller: 'userController',
@@ -53,7 +53,33 @@
             .when('/admin/users/edit/:userId', {
                 templateUrl: '/partials/users/edit-user',
                 controller: 'userController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
+            })
+            .when('/admin/categories',{
+                templateUrl: '/partials/category/categories-list',
+                controller: 'categoryController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
+            })
+            .when('/admin/categories/edit/:categoryid',{
+                templateUrl: '/partials/category/categories-edit',
+                controller: 'categoryController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.admin
+
+            })
+            .when('/admin/tags',{
+                templateUrl: 'partials/tags/tags-list',
+                controller: 'tagController',
+                controllerAs: 'vm',
+                resolve:routeRoleChecks.admin
+            })
+            .when('/admin/tags/edit/:tagid',{
+                templateUrl: 'partials/tags/edit-tags',
+                controller: 'tagController',
+                controllerAs: 'vm',
+                resolve:routeRoleChecks.admin
             })
          /*   .when('/admin/content', {
                 templateUrl: '/partials/author/content',
@@ -90,6 +116,16 @@
                 controller: 'commentatorController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.commentator
+            })
+            .when('/passwordRecovery', {
+                templateUrl: '/partials/password-recovery/password-recovery',
+                controller: 'passwordRecoveryController',
+                controllerAs: 'vm'
+            })
+            .when('/reset/:token', {
+                templateUrl: '/partials/password-recovery/password-reset',
+                controller: 'passwordResetController',
+                controllerAs: 'vm'
             })
             .otherwise('/');
     };

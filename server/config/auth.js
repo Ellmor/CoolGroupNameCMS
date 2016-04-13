@@ -22,13 +22,13 @@ exports.requiresApiLogin = function(req, res, next) {
 
 exports.requiresRole = function(role) {
     return function(req, res, next) {
-        if(!req.isAuthenticated() || req.user.roles.indexOf("admin") === -1){
+        if(!req.isAuthenticated() || req.user.roles.indexOf('admin') === -1){
             res.status(403);
             res.end();
         } else {
             next();
         }
-    }
+    };
 };
 
 
@@ -67,11 +67,11 @@ exports.googleAuthenticate  = function(req, res, next) {
             'https://www.googleapis.com/auth/userinfo.email'
         ],
     })(req, res, next);
-}
+};
 
 exports.googleAuthenticateCallback  = function(req, res, next) {
     passport.authenticate('google', {
         failureRedirect: '/signin',
         successRedirect: '/admin'
     })(req, res, next);
-}
+};

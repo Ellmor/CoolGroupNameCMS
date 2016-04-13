@@ -1,0 +1,10 @@
+//
+   Created by D'oh on 4/6/16.
+.container
+    .row
+        form(ng-init="getCategory(vm.categoryId)")
+            div.form-group
+                p {{Category.name}}
+                label(for="catName") Name
+                input#catName.form-control(type="text", name="catName", placeholder="Name", ng-model="Category.name", autofocus)
+                button.btn.btn-small.btn-primary(ng-click="updateCategory(Category)") Update Category

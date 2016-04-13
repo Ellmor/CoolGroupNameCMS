@@ -1,6 +1,9 @@
 var auth = require('./auth');
 var users = require('./api/user.api');
 var content = require('./api/content.api');
+var categories = require('./api/categories.api.js');
+var tags = require('./api/tags.api.js');
+
 
 module.exports = function (app) {
 
@@ -9,11 +12,13 @@ module.exports = function (app) {
         res.render('../../public/app/' + req.params[0]);
     });
 
+    //Route for reset tokens (links send to Mails)
+
     app.post('/logout', function (req, res) {
         req.logOut();
         res.end();
     });
-
+//
     //Local Auth
     app.post('/login', auth.authenticate);
 
@@ -32,10 +37,12 @@ module.exports = function (app) {
     //API ROUTE SETUP
     app.use('/api/users/', users);
     app.use('/api/content/', content);
+    app.use('/api/categories/', categories);
+    app.use ('/api/tags/', tags);
 
     app.get('*', function (req, res) {
         res.render('index', {
             bootstrappedUser: req.user
         });
     });
-}
+};

@@ -1,0 +1,32 @@
+//
+   Created by D'oh on 4/5/16.
+
+.container
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+    .row
+
+        table.table.table-bordered
+            thead
+                th Name
+                th Date
+                th Edit
+                th Delete
+            tbody
+                tr(ng-repeat="cat in Categories | filter: searchText")
+                    td {{ cat.name }}
+                    td {{ cat.createDate | date:'medium'}}
+                    td
+                        a.btn.btn-success.btn-block(href="/admin/categories/edit/{{cat._id}}") Edit
+                    td
+                        button.btn.btn-danger.btn-block(ng-click="deleteCategory(cat._id)") Delete
+
+                div.form-group
+                    form
+                        div.form-group
+                            label(for="catName") Category Name
+                                input#catName.form-control(type="text", name="catName", placeholder="Name", ng-model="cat.name", autofocus)
+
+                            button.btn.btn-small.btn-warning(ng-click="createCategory(cat)") Create Category

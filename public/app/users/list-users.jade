@@ -1,4 +1,8 @@
 .container(ng-controller='userController')
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
     .row
         h1 Admin Panel with CRUD functionality
 
@@ -8,16 +12,16 @@
                 th Login Medium
                 th UserName
                 th Role
+                th Date
                 th Update
                 th Delete
-                th Date
             tbody
-                tr( ng-repeat="user in Users")
+                tr( ng-repeat="user in Users | filter:searchText")
                     td {{user.firstName + "-" + user.lastName}}
                     td {{user.provider}}
                     td {{user.username}}
-                    td(ng-repeat="role in user.roles") {{role}}
-                    td {{user.createDate}}
+                    td {{user.roles.join(', ')}}
+                    td {{user.createDate | date:'medium'}}
                     td
                         a.btn.btn-success.btn-block(href="/admin/users/edit/{{user._id}}") Edit
                     td
@@ -25,7 +29,13 @@
 
         h2 Create user
 
-        form
+        div.form-group
+            form
+                select#role-selection(multiple="multiple", ng-model="user.roles")
+                    option(value="admin") Admin
+                    option(value="author") Author
+                    option(value="commentator") Commentator
+
             div.form-group
                 label(for="name") Username
                     input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus)
@@ -42,3 +52,4 @@
                 label(for="lastName") Last Name
                     input.form-control(type="text", id="lastName", name="lastName", placeholder="Last Name", ng-model="user.lastName")
             button.btn.btn-small.btn-warning( ng-click="createUser(user)") Create User
+
