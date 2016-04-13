@@ -12,6 +12,13 @@
                     return mvAuth.authorizeCurrentUserForRoute("admin");
                 }
             },
+            author: {
+                auth: function(mvAuth) {
+                    console.log(mvAuth.authorizeCurrentUserForRoute("author"));
+                    console.log (mvAuth.authorizeCurrentUserForRoute("admin"));
+                    return mvAuth.authorizeCurrentUserForRoute("author");
+                }
+            },
             commentator: {
                 auth: function(mvAuth) {
                     return mvAuth.authorizeCurrentUserForRoute("commentator");
@@ -31,12 +38,12 @@
                 controller: 'signUpController',
                 controllerAs: 'vm'
             })
-            .when('/admin', {
+           /* .when('/admin', {
                 templateUrl: '/partials/dashboard/dashboard',
                 controller: 'dashboardController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
-            })
+            })*/
             .when('/admin/users', {
                 templateUrl: '/partials/users/list-users',
                 controller: 'userController',
@@ -48,17 +55,35 @@
                 controller: 'userController',
                 controllerAs: 'vm'
             })
-            .when('/admin/content', {
+         /*   .when('/admin/content', {
                 templateUrl: '/partials/author/content',
                 controller: 'contentController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
             })
-            .when('/admin/content/edit/:contentId', {
+            .when('admin/content/edit/:contentId', {
                 templateUrl: '/partials/author/edit-content',
                 controller: 'contentController',
                 controllerAs: 'vm',
                 resolve: routeRoleChecks.admin
+            })*/
+            .when('/dashboard', {
+                templateUrl: '/partials/dashboard/dashboard',
+                controller: 'dashboardController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.author || routeRoleChecks.admin
+            })
+            .when('/content', {
+                templateUrl: '/partials/author/content',
+                controller: 'contentController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.author
+            })
+            .when('/content/edit/:contentId', {
+                templateUrl: '/partials/author/edit-content',
+                controller: 'contentController',
+                controllerAs: 'vm',
+                resolve: routeRoleChecks.author
             })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
@@ -83,7 +108,7 @@
 
         //used to redirect rejected paths based on roles (rejected in resolve)
         $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection){
-            if(rejection === 'not authorized'){
+            if(rejection === false){
                 $location.path('/');
             }
         });
