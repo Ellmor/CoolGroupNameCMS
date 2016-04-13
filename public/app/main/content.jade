@@ -1,4 +1,4 @@
-.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 200px; overflow: hidden")
+.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 250px;")
     .panel-body
         .pull-right
             i.fa.fa-heart(ng-show="item.meta.favs > 0") {{' ' + item.meta.favs + ' '}}
@@ -12,4 +12,4 @@
                 a(ng-click="") {{ tag }}
                 i ,
         i {{item.createDate | date}}
-        p.article(ng-bind="item.content")
+        div.article(ng-bind="item.content" style="white-space:nowrap; overflow:hidden; width: 100%; text-overflow: ellipsis;")
