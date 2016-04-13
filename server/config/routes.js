@@ -3,6 +3,8 @@ var users = require('./api/user.api');
 var content = require('./api/content.api');
 var categories = require('./api/categories.api.js');
 var tags = require('./api/tags.api.js');
+var log = require('./services/log.service');
+
 
 
 module.exports = function (app) {

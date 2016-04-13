@@ -143,9 +143,13 @@
             .otherwise('/');
     };
 
-    function run ($rootScope, $location, mvIdentity){
+    function run ($rootScope, $location, mvIdentity, ioService){
         //runs on route change. Used to redirect users when logged in based on roles
+
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            ioService.emit('locationChange', $location.path(), function(){
+                console.log('emit');
+            });
             if($location.path() === '/backend'){
                 if(mvIdentity.currentUser && mvIdentity.currentUser.roles.indexOf("admin")>-1){
                     $location.path('/admin');

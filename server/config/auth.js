@@ -1,4 +1,5 @@
 var passport = require('passport');
+var log = require('./services/log.service');
 
 exports.authenticate  = function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -6,6 +7,10 @@ exports.authenticate  = function(req, res, next) {
         if (!user) { return res.send({success:false}); }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
+            console.log('Auth');
+            console.log(user);
+            console.log(req.connection.remoteAddress);
+            log.newSession({ip: req.connection.remoteAddress, user_id: user._id});
             return res.send({success:true, user:user});
         });
     })(req, res, next);
