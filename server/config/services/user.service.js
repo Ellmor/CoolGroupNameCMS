@@ -16,6 +16,7 @@ module.exports.createUser = function createUser(userModel, callback) {
         firstName: userModel.firstName,
         lastName:  userModel.lastName,
         username: userModel.username,
+        email: userModel.email,
         salt: salt,
         hashed_pwd: hash,
         roles: userModel.roles || ['commentator']
@@ -43,6 +44,7 @@ module.exports.updateUser = function updateUser(userId, userModel, callback) {
         var hash = authService.hashPwd(salt, userModel.password);
 
         user.username = userModel.username;
+        user.email = userModel.email;
         user.firstName = userModel.firstName;
         user.lastName = userModel.lastName;
         user.roles = userModel.roles;

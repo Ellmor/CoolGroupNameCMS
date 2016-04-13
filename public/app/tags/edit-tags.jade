@@ -6,7 +6,7 @@
     .raw
         form(ng-init="getTag(vm.tagId)")
             div.form-group
-                p {{vm.Tag.name}}
+                p {{Tag.name}}
                 label(for="tagName") Name
                 input#tagName.form-control(type="text", name="tagName", placeholder="Name", ng-model="Tag.name", autofocus)
                 button.btn.btn-small.btn-primary(ng-click="updateTag(Tag)") Update Tag

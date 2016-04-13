@@ -14,6 +14,10 @@
                         option(value="commentator") Commentator
 
             div.form-group
+                label(for="email") Email
+                    input#email.form-control(type="text", name="email", placeholder="Email", ng-model="User.email")
+
+            div.form-group
                 label(for="password") Password
                     input#password.form-control(type="text", name="password", placeholder="Password", ng-model="User.password")
             div.form-group

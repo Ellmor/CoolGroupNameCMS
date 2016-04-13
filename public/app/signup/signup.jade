@@ -17,6 +17,10 @@
                     input#firstName.form-control(type="text", name="firstName", placeholder="First Name", ng-model="user.firstName", required)
                     span.text-danger(ng-show="signUpForm.firstName.$error.required") First Name cannot be empty.
             div.form-group
+                label(for="email") Email
+                    input#email.form-control(type="text", name="email", placeholder="Email", ng-model="user.email", required)
+                    span.text-danger(ng-show="signUpForm.email.$error.required") Email cannot be empty.
+            div.form-group
                 label(for="lastName") First Name
                     input#lastName.form-control(type="text", name="lastName", placeholder="Last Name", ng-model="user.lastName", required)
                     span.text-danger(ng-show="signUpForm.lastName.$error.required") Last Name cannot be empty.
