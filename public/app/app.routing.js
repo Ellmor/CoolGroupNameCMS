@@ -9,19 +9,32 @@
         var routeRoleChecks = {
             admin: {
                 auth: function(mvAuth) {
-                    return mvAuth.authorizeCurrentUserForRoute("admin");
+                    var access = mvAuth.authorizeCurrentUserForRoute("admin");
+                    return access.resolve;
                 }
             },
             author: {
                 auth: function(mvAuth) {
                     console.log(mvAuth.authorizeCurrentUserForRoute("author"));
                     console.log (mvAuth.authorizeCurrentUserForRoute("admin"));
-                    return mvAuth.authorizeCurrentUserForRoute("author");
+                    var access = mvAuth.authorizeCurrentUserForRoute("author");
+                    return access.resolve;
                 }
             },
             commentator: {
                 auth: function(mvAuth) {
-                    return mvAuth.authorizeCurrentUserForRoute("commentator");
+                    var access = mvAuth.authorizeCurrentUserForRoute("commentator");
+                    return access.resolve;
+                }
+            }
+        };
+
+        var routeAccessChecks = {
+            dashboard: {
+                auth: function(mvAuth) {
+                    var admin = mvAuth.authorizeCurrentUserForRoute("admin");
+                    var author = mvAuth.authorizeCurrentUserForRoute("author");
+                    return (admin.success || author.success) ? true : (admin.success ? author.resolve: admin.resolve);
                 }
             }
         };
@@ -60,26 +73,26 @@
                 templateUrl: '/partials/category/categories-list',
                 controller: 'categoryController',
                 controllerAs: 'vm',
-                resolve: routeRoleChecks.admin
+                resolve: routeAccessChecks.dashboard
             })
             .when('/admin/categories/edit/:categoryid',{
                 templateUrl: '/partials/category/categories-edit',
                 controller: 'categoryController',
                 controllerAs: 'vm',
-                resolve: routeRoleChecks.admin
+                resolve: routeAccessChecks.dashboard
 
             })
             .when('/admin/tags',{
                 templateUrl: 'partials/tags/tags-list',
                 controller: 'tagController',
                 controllerAs: 'vm',
-                resolve:routeRoleChecks.admin
+                resolve: routeAccessChecks.dashboard
             })
             .when('/admin/tags/edit/:tagid',{
                 templateUrl: 'partials/tags/edit-tags',
                 controller: 'tagController',
                 controllerAs: 'vm',
-                resolve:routeRoleChecks.admin
+                resolve: routeAccessChecks.dashboard
             })
          /*   .when('/admin/content', {
                 templateUrl: '/partials/author/content',
@@ -97,19 +110,19 @@
                 templateUrl: '/partials/dashboard/dashboard',
                 controller: 'dashboardController',
                 controllerAs: 'vm',
-                resolve: routeRoleChecks.author || routeRoleChecks.admin
+                resolve: routeAccessChecks.dashboard
             })
             .when('/content', {
                 templateUrl: '/partials/author/content',
                 controller: 'contentController',
                 controllerAs: 'vm',
-                resolve: routeRoleChecks.author
+                resolve: routeAccessChecks.dashboard
             })
             .when('/content/edit/:contentId', {
                 templateUrl: '/partials/author/edit-content',
                 controller: 'contentController',
                 controllerAs: 'vm',
-                resolve: routeRoleChecks.author
+                resolve: routeAccessChecks.dashboard
             })
             .when('/commentator/profile', {
                 templateUrl: '/partials/profile/commentator-profile',
@@ -144,7 +157,7 @@
 
         //used to redirect rejected paths based on roles (rejected in resolve)
         $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection){
-            if(rejection === false){
+            if(rejection === "not authorized"){
                 $location.path('/');
             }
         });

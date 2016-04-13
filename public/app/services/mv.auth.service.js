@@ -31,10 +31,11 @@
             authorizeCurrentUserForRoute: function (role) {
                 console.log('checkRole in mvAuth');
                 if(mvIdentity.isAuthorized(role)){
-                    return true;
+                    return {success: true, resolve: true};
                 } else {
-                    //return $q.reject('not authorized');
-                    return false;
+                    console.log('not ' + role);
+                    return {success: false, resolve: $q.reject('not authorized')};
+                    //return false;
                 }
             }
 
