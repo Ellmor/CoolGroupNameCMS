@@ -10,40 +10,44 @@ var contentService = require('../services/content.service');
 /* GET content listing. */
 
 
-router.get('/published/newest', function(req, res, next) {
+router.get('/published/newest', function (req, res, next) {
     Content.find({'state': 'published'}).sort('-createDate').exec(
-        function (err, results){
+        function (err, results) {
             res.json(results);
         });
 });
 
-router.get('/published', function(req, res, next) {
+router.get('/published', function (req, res, next) {
     Content.find({'state': 'published'}).exec(
-        function (err, results){
+        function (err, results) {
             res.json(results);
         });
 });
 
 /*Get Content */
-router.get('/:contentid', function(req,res, next){
+router.get('/:contentid', function (req, res, next) {
     var contentid = req.params.contentid;
-    Content.findOne({_id:contentid}, function(err, results){res.json(results);});
+    Content.findOne({_id: contentid}, function (err, results) {
+        res.json(results);
+    });
 });
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     console.log("req.user");
-    Content.find(function (err, results){res.json(results);});
+    Content.find(function (err, results) {
+        res.json(results);
+    });
 });
 
 
 /*Create content*/
-router.post('/', function(req, res){
+router.post('/', function (req, res) {
     //NOT SECURE
-    if(!req.user)(
+    if (!req.user)(
         req.user = {_id: "undefined", username: "undefined", firstName: "undefined", lastName: "undefined"}
     )
-    contentService.createContent(req.user, req.body, function(response){
-        if(response.success) {
+    contentService.createContent(req.user, req.body, function (response) {
+        if (response.success) {
             res.json(response.data)
         }
         else {
@@ -53,14 +57,14 @@ router.post('/', function(req, res){
 });
 
 /*Update user*/
-router.put('/:contentid', function(req,res,next){
+router.put('/:contentid', function (req, res, next) {
     //NOT SECURE
-    if(!req.user)(
+    if (!req.user)(
         req.user = {_id: "undefined", username: "undefined", firstName: "undefined", lastName: "undefined"}
     )
-    contentService.updateContent(req.params.contentid, req.user, req.body, function(response){
+    contentService.updateContent(req.params.contentid, req.user, req.body, function (response) {
         console.log(response);
-        if(response.success) {
+        if (response.success) {
             res.send(response.data);
         } else {
             res.json({message: response.message});
@@ -68,19 +72,17 @@ router.put('/:contentid', function(req,res,next){
     });
 });
 
-
-
 /*Delete content*/
-router.delete('/:contentid', function(req,res,next){
+router.delete('/:contentid', function (req, res, next) {
     var contentid = req.params.contentid;
-    Content.remove({_id:contentid}, function (err){
-            if(err) {
+    Content.remove({_id: contentid}, function (err) {
+            if (err) {
                 //if there is an error return error message
-                res.json({success:false, message:"Error", details: err});
+                res.json({success: false, message: "Error", details: err});
             } else {
                 //else return confirmation that the user was deleted
-                res.json({success:true, message: "The user " + req.params.contentid + " was deleted"});
-            };
+                res.json({success: true, message: "The article " + req.params.contentid + " was deleted"});
+            }
         }
     );
 });
