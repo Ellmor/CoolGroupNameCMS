@@ -109,7 +109,7 @@
             .when('/dashboard', {
                 templateUrl: '/partials/dashboard/dashboard',
                 controller: 'dashboardController',
-                controllerAs: 'vm',
+                controllerAs: 'dashboard',
                 resolve: routeAccessChecks.dashboard
             })
             .when('/content', {

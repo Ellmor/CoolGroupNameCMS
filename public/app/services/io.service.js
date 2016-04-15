@@ -14,14 +14,13 @@
             socket.send('connect');
         });
 
+
         //template for listeners (receiving data)
         //the listeners can be defined for example in controllers
         var on = function (eventName, callback) {
             socket.on(eventName, function () {
                 var args = arguments;
-                $rootScope.$apply(function () {
-                    callback.apply(socket, args);
-                });
+                callback(args[0]);
             });
         };
 

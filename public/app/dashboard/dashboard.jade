@@ -1,17 +1,96 @@
 //
    Created by Liga on 27-02-2016.
 
-.container(ng-controller='dashboardController')
+.container
     .row
-        .panel.panel-default
-            .panel-body
-                ul.list-group
-                    li(ng-show="identity.currentUser.isAdmin()")
-                        a.btn.btn-primary(href="/admin/users" role="button") Users
-                    li
-                        a.btn.btn-primary(href="/content" role="button") Content
-                    li
-                        a.btn.btn-primary(href="/admin/categories" role="button") Categories
-                    li
-                        a.btn.btn-primary(href="/admin/tags" role="button") Tags
+        .col-md-12
+            h1 Dashboard
+    .row
+        .col-md-2
+            .panel.panel-default
+                .panel-heading CRUD
+                .panel-body
+                    ul.list-group
+                        li(ng-show="dashboard.identity.currentUser.isAdmin()")
+                            a.btn.btn-primary(href="/admin/users" role="button") Users
+                        li
+                            a.btn.btn-primary(href="/content" role="button") Content
+                        li
+                            a.btn.btn-primary(href="/admin/categories" role="button") Categories
+                        li
+                            a.btn.btn-primary(href="/admin/tags" role="button") Tags
+        .col-md-10
+            .row
+                .panel.panel-primary(ng-init="isDataPanelOpen = true")
+                    .panel-heading(data-toggle="collapse" data-target="#data" ng-click="isDataPanelOpen = !isDataPanelOpen") General Data - visiting users on the website
+                        i.glyphicon.pull-right(ng-class="{'fa fa-chevron-down': isDataPanelOpen, 'fa fa-chevron-right': !isDataPanelOpen}" )
+                    #data.panel-body.collapse.in
+                        p Number of users online (based on ip):
+                        p Number of users logged in:
+                        p top users (based on total sessions)
+                        table.table.table-bordered
+                            thead
+                                th username
+                                th Total sessions
+                                th Currently logged in
+                                th Last login (date)
+                                th elapsed time since login
+                                th Top pages visited
+                        p Top pages (based on total visits)
+                        table.table.table-bordered
+                            thead
+                                th Page
+                                th Currently visiting
+                                th Total visits
+
+
+                        p information about the visiting users on the website (number, which pages they visit, etc.).
+                        p If any of these users are logged in,
+                        p information about them shall be displayed (username, elapsed time since login, etc.).
+            .row
+                .panel.panel-primary(ng-init="islogOpen = false")
+                    .panel-heading(data-toggle="collapse" data-target="#log" ng-click="islogOpen = !islogOpen") Log (click to expand)
+                        i.glyphicon.pull-right(ng-class="{'fa fa-chevron-down': islogOpen, 'fa fa-chevron-right': !islogOpen}" )
+                    #log.panel-body.collapse
+                        table.table.table-bordered
+                            thead
+                                th Ip
+                                th Event
+                                th Session
+                                th Date
+                                th Url
+                                th Actions
+                            tbody
+                                tr(ng-repeat="log in dashboard.Logs")
+                                    td {{ log.client_ip }}
+                                    td {{ log.event }}
+                                    td {{ log.session_id }}
+                                    td {{ log.date | date:'medium' }}
+                                    td {{ log.url }}
+                                    td
+                                        button.btn.btn-danger.btn-block(ng-click="") Details
+            .row
+                .panel.panel-primary(ng-init="isSessionPanelOpen = false")
+                    .panel-heading(data-toggle="collapse" data-target="#sessions" ng-click="isSessionPanelOpen = !isSessionPanelOpen") Sessions (click to expand)
+                        i.glyphicon.pull-right(ng-class="{'fa fa-chevron-down': isSessionPanelOpen, 'fa fa-chevron-right': !isSessionPanelOpen}" )
+                    #sessions.panel-body.collapse
+                        table.table.table-bordered
+                            thead
+                                th Ip
+                                th Event
+                                th Session
+                                th Date
+                                th Url
+                                th Actions
+                            tbody
+                                tr(ng-repeat="log in dashboard.Logs")
+                                    td {{ log.client_ip }}
+                                    td {{ log.event }}
+                                    td {{ log.session_id }}
+                                    td {{ log.date | date:'medium' }}
+                                    td {{ log.url }}
+                                    td
+                                        button.btn.btn-danger.btn-block(ng-click="") Details
+                        p {{ dashboard.Logs}}
+
 
