@@ -30,8 +30,29 @@
                 })
         };
 
+        var getUsers = function(limit, fields) {
+            var param = '';
+
+            if(limit || fields){
+                param += '?';
+                if(limit && fields){
+                    param += "limit=" + limit + "&fields=" + fields;
+                } else if (limit){
+                    param += "limit=" + limit;
+                } else if (fields){
+                    param += "fields=" + fields;
+                }
+            }
+            console.log(param);
+            return $http.get("/api/users" + param)
+                .then(function(response){
+                    return response.data;
+                });
+        };
+
         return {
-            getLogs: getLogs
+            getLogs: getLogs,
+            getUsers: getUsers
         }
 
     }

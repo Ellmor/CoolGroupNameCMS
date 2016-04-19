@@ -14,6 +14,27 @@
                 })
         };
 
+        //function accepts lmit for number of users. The endpoint was changed accordingly in backend
+        var getUsersWithParam = function(limit, fields){
+            var param = '';
+
+            if(limit || fields){
+                param += '?';
+                if(limit && fields){
+                    param += "limit=" + limit + "&fields=" + fields;
+                } else if (limit){
+                    param += "limit=" + limit;
+                } else if (fields){
+                    param += "fields=" + fields;
+                }
+            }
+            console.log(param);
+            return $http.get("/api/users" + param)
+                .then(function(response){
+                    return response.data;
+                });
+        };
+
         var getUser = function(userid){
             return $http.get("/api/users/" + userid)
                 .then(function(response){
@@ -70,7 +91,8 @@
             updateUser: updateUser,
             requestNewPassword: requestNewPassword,
             resetPassword: resetPassword,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            getUsersWithParam: getUsersWithParam
         }
 
     }

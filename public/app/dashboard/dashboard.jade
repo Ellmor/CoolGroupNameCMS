@@ -25,6 +25,7 @@
                     .panel-heading(data-toggle="collapse" data-target="#data" ng-click="isDataPanelOpen = !isDataPanelOpen") General Data - visiting users on the website
                         i.glyphicon.pull-right(ng-class="{'fa fa-chevron-down': isDataPanelOpen, 'fa fa-chevron-right': !isDataPanelOpen}" )
                     #data.panel-body.collapse.in
+                        p Total: {{dashboard.total}}
                         p Number of users online (based on ip):
                         p Number of users logged in:
                         p top users (based on total sessions)
@@ -36,12 +37,29 @@
                                 th Last login (date)
                                 th elapsed time since login
                                 th Top pages visited
+                            tbody
+                                tr(ng-repeat="user in dashboard.TopUsers")
+                                    td {{ user.username }}
+                                    td {{ user.sessions_num }}
+                                    td {{ user.online }}
+                                    td {{ user.lastLogin | date:'medium' }}
+                                    td {{ user.timeOnline }}
+                                    td {{ user.pagesVisited }}
+                                    td
+                                        button.btn.btn-danger.btn-block(ng-click="") Details
                         p Top pages (based on total visits)
                         table.table.table-bordered
                             thead
                                 th Page
                                 th Currently visiting
                                 th Total visits
+                            tbody
+                                tr(ng-repeat="page in dashboard.TopPages")
+                                    td {{ page.url }}
+                                    td {{ page.visitors }}
+                                    td {{ page.totalVisits }}
+                                    td
+                                        button.btn.btn-danger.btn-block(ng-click="") Details
 
 
                         p information about the visiting users on the website (number, which pages they visit, etc.).

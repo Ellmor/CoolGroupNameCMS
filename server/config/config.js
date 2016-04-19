@@ -12,6 +12,7 @@ module.exports = {
         db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
         rootPath: rootPath,
         port: devPort,
+        sessionSecret: 'whatever',
         twitter: {
             clientID: 's5R77sfSVhyg9lnDGGDVODrh5',
             clientSecret: 'dowP4AoBt9nFPg5jvVBfZaH1IgydtQvx4P9TCJGu7LHssUjvMZ',
@@ -32,6 +33,7 @@ module.exports = {
         db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
         rootPath: rootPath,
         port: prodPort,
+        sessionSecret: 'whatever',
         twitter: {
             clientID: 's5R77sfSVhyg9lnDGGDVODrh5',
             clientSecret: 'dowP4AoBt9nFPg5jvVBfZaH1IgydtQvx4P9TCJGu7LHssUjvMZ',

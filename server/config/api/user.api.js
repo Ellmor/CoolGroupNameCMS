@@ -8,7 +8,27 @@ var auth = require('../auth');
 //console.log('users.api');
 /* GET users listing. */
 router.get('/', auth.requiresRole("admin"), function(req, res, next) {
-    User.find(function (err, results){res.json(results);});
+
+    var param = {};
+    if(req.query) {
+        console.log(req.query);
+        if(req.query.limit) {
+            //parse the number value to integer
+            var limit = parseInt(req.query.limit);
+            //checking if it is a valid number
+            param.limit = ((limit > 0) ? limit : 0);
+        }
+    } else {
+        //setting default values
+        param.limit = 0; //limit(0) is equivalent as setting no limit
+    }
+
+    User.find().limit(param.limit).exec(
+        function (err, results) {
+            res.json(results);
+        });
+
+    //User.find(function (err, results){res.json(results);});
 });
 
 /*Create user*/

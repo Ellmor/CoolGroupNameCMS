@@ -139,5 +139,7 @@ module.exports = function (config) {
             return new Date(new Date().setDate(new Date().getDate()+change))
         }
     };
+
+    return db;
 }
 

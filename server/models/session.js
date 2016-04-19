@@ -5,7 +5,8 @@ var sessionSchema = mongoose.Schema({
     user_id: String,
     status: String,
     loggedIn: Date,
-    loggedOut: Date
+    loggedOut: Date,
+    message: String
 });
 
-module.exports = mongoose.model('Session', sessionSchema);
+module.exports = mongoose.model('SessionLog', sessionSchema);

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Log = require('../../models/log');
+var User = require('../../models/user');
 var logService = require('../services/log.service');
 
 /* GET content listing. */
@@ -39,6 +40,28 @@ router.get('/', function (req, res, next) {
     }
     console.log(param);
     Log.find().limit(param.limit).sort(param.sort).exec(
+        function (err, results) {
+            res.json(results);
+        });
+});
+
+router.get('/users', function (req, res, next) {
+    console.log(req.query);
+    var param = {};
+    if(req.query) {
+        console.log(req.query);
+        if(req.query.limit) {
+            //parse the number value to integer
+            var limit = parseInt(req.query.limit);
+            //checking if it is a valid number
+            param.limit = ((limit > 0) ? limit : 0);
+        }
+    } else {
+        //setting default values
+        param.limit = 0; //limit(0) is equivalent as setting no limit
+    }
+
+    User.find('username online').limit(param.limit).exec(
         function (err, results) {
             res.json(results);
         });

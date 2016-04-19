@@ -1,30 +1,25 @@
-var express = require('express');
-
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var app = express();
-
-//creating the http server
-var server = require('http').Server(app);
-//passing the server to the socket.io to listen to
-var io = require('socket.io')(server);
-
+//files
 var config = require('./server/config/config')[env];
-
-require('./server/config/express')(app, config);
-
-require('./server/config/mongoose')(config);
-
-require('./server/config/passport')();
-
-require('./server/config/routes')(app);
+var mongoose = require('./server/config/mongoose');
+var express = require('./server/config/express');
+var passport = require('./server/config/passport');
+var routes = require('./server/config/routes');
 
 //require('./server/config/passport')(app);
 
-
-require('./server/config/socketio')(app, io);
+//var socketio = require('./server/config/socketio')(app);
 
 //changed from app to server
-server.listen(config.port);
 
+//invoke files
+var db = mongoose(config);
+console.log(db);
+var app = express(app, config, db);
+var passport = passport();
+var routes = routes(app.app);
+//var socketio = socketio();
+
+app.server.listen(config.port);
 console.log('Listening on port ' + config.port + '...');

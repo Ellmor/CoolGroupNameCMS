@@ -4,7 +4,9 @@
         .module('app')
         .controller('mvNavBarLoginCtrl', mvNavBarLoginCtrl);
 
-    function mvNavBarLoginCtrl($scope, $http, mvIdentity, mvNotifier, mvAuth, $location, helperService) {
+    mvNavBarLoginCtrl.$inject = ['$scope', 'mvIdentity', 'mvNotifier', 'mvAuth', '$location', 'helperService'];
+
+    function mvNavBarLoginCtrl($scope, mvIdentity, mvNotifier, mvAuth, $location, helperService) {
         var vm = this;
 
         $scope.identity = mvIdentity;
