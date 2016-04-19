@@ -18,22 +18,18 @@
         //template for listeners (receiving data)
         //the listeners can be defined for example in controllers
         var on = function (eventName, callback) {
-            socket.on(eventName, function () {
-                var args = arguments;
-                callback(args[0]);
+            socket.on(eventName, function (data) {
+                //var args = arguments;
+                $timeout(function(){
+                    callback(data);
+                })
+
             });
         };
 
         //template for sending info to server (emitting messages)
-        var emit = function (eventName, data, callback) {
-            socket.emit(eventName, data, function () {
-                var args = arguments;
-                $rootScope.$apply(function () {
-                    if (callback) {
-                        callback.apply(socket, args);
-                    }
-                });
-            })
+        var emit = function (eventName, data) {
+            socket.emit(eventName, data);
         };
 
         return {

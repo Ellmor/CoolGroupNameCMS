@@ -4,6 +4,7 @@ var log = require('./services/log.service'),
     passport = require('passport');
 
 module.exports = function (app, io, mongoStore) {
+    /*
     io.use(function(socket, next){
         cookieParser(config.sessionSecret)(socket.request, {}, function(err){
             var sessionId = socket.request.signedCookies['connect.sid'];
@@ -21,7 +22,7 @@ module.exports = function (app, io, mongoStore) {
             })
         })
     })
-//
+*/
     io.sockets.on('connection', function(socket) {
         console.log("on connection");
         //on message event, which is passed when the website is first loaded
