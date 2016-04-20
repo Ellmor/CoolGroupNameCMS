@@ -4,7 +4,9 @@
         .module('app')
         .factory('ioService', ioService);
 
-    function ioService() {
+    ioService.$inject = ['$timeout'];
+
+    function ioService($timeout) {
 
         //connecting to server
         var socket = io.connect('http://localhost:3030');
