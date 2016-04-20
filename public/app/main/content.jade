@@ -1,8 +1,10 @@
-
-.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 300px; overflow: hidden")
+.panel-body
+    input(ng-model="searchText", placeholder="Filter")
+.panel.panel-default.col-md-6(ng-repeat="item in main.Content | filter:searchText" style="height: 300px; overflow: hidden")
 
 
     .panel-body
+
         .pull-right
             i.fa.fa-heart(ng-show="item.meta.favs > 0") {{' ' + item.meta.favs + ' '}}
             i.fa.fa-thumbs-up(ng-show="item.meta.votes > 0") {{' ' + item.meta.votes + ' '}}

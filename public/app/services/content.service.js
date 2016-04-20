@@ -6,6 +6,15 @@
 
     function contentService($http) {
 
+        var tagsSelected = [];
+
+        var findContentInArray = function(data,id){
+            return data.filter(function(element){
+                if(element.id === id){
+                    return element
+                }
+            });
+        }
         var getContents = function () {
             return $http.get("/api/content")
                 .then(function (response) {
@@ -16,9 +25,41 @@
         var getContent = function (contentid) {
             return $http.get("/api/content/" + contentid)
                 .then(function (response) {
-                    return response.data;
+                    return findContentInArray(response.data, id);
                 })
         };
+
+        var getTags = function () {
+            return $http.get('/api/categories/')
+                .then(function(response){
+                    return response.data;
+                })
+            
+        }
+        
+        var getTagsSelected = function () {
+            return tagsSelected;
+        }
+
+        var tagChange = function (tag) {
+            var i = tagsSelected.indexOf(tag);
+
+            if(i > -1){
+                tagsSelected.splice(i, 1);
+            }else{
+                tagsSelected.push(tag);
+            }
+        }
+        var contentFilter = function(content){
+            if(tagsSelected.length > 0){
+                if(tagsSelected.indexOf(content.Tag) < 0){
+                    return;
+                }
+            }
+            return content;
+        }
+
+
 
         var getContent_Published = function () {
             console.log('getNewestContent');
@@ -61,7 +102,11 @@
             createContent: createContent,
             updateContent: updateContent,
             deleteContent: deleteContent,
-            getContent_Published: getContent_Published
+            getContent_Published: getContent_Published,
+            getTags: getTags,
+            contentFilter: contentFilter,
+            tagChange: tagChange,
+            getTagsSelected: getTagsSelected
         }
 
     }

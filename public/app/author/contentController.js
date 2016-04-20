@@ -20,7 +20,24 @@
         var modelContent = function (data) {
             $scope.Content = data;
         }
+        var modelTags = function(data){
+            $scope.Tags = data;
+        }
+        contentService.getTags()
+            .then(modelTags);
 
+        var updateTagsSelected = function(){
+        $scope.tagsSelected = contentService.getTagsSelected();
+        }
+
+        $scope.contentFilter = function (content) {
+            return contentService.contentFilter(content);
+        }
+
+        $scope.tagChange = function(tag){
+            contentService.tagChange(tag);
+            updateTagsSelected();
+        }
         $scope.getContents = function () {
             contentService.getContents()
                 .then(modelContents);
@@ -63,6 +80,8 @@
             );
 
         }
+
+        updateTagsSelected();
 
     }
 

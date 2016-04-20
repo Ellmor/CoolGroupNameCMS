@@ -38,7 +38,7 @@
         }
 
         $scope.updateUser = function (user) {
-            console.log(user);
+            console.log(user.email);
             userService.updateUser(user);
             userService.getUser(user._id)
                 .then(modelUser);

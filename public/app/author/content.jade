@@ -24,6 +24,7 @@
                 th Title
                 th Headline
                 th Content
+                th Tags
                 th Update
                 th Delete
             tbody
@@ -31,7 +32,8 @@
                     td {{content.title}}
                     td {{content.headline}}
                     td {{content.content}}
-                    td {{content._id}}
+                    td {{ }}
+                    td(ng-repeate="tag in tags", ng-init="getTags()") {{ tag.name }}
                     td
                         a.btn.btn-success.btn-block(href="/content/edit/{{content._id}}") Edit
                     td
