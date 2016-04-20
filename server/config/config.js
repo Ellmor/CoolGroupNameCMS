@@ -9,7 +9,8 @@ var prodPort = process.env.PORT || 80;
 
 module.exports = {
     development: {
-        db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
+        db: 'mongodb://localhost/CoolGroupProjectDB',
+        //db: 'mongodb://faregon:password@ds019048.mlab.com:19048/coolgroupprojectdb',
         rootPath: rootPath,
         port: devPort,
         sessionSecret: 'whatever',

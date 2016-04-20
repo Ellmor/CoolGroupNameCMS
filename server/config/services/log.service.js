@@ -1,5 +1,6 @@
-var Session = require('../../models/session');
+//var Session = require('../../models/session');
 var Log = require('../../models/log');
+var User = require('../../models/user');
 
 //service contains methods for interacting with the log and session documents of the database.
 //log = logs evens: log in, log out, page change etc.
@@ -11,7 +12,7 @@ module.exports.logEvent = function logEvent(event, callback) {
     var log = {
         client_ip: event.ip,
         event: event.event, //if logged in
-        session_id: null, //if logged in
+        user_id: event.user_id || 'anonymous', //if logged in
         date: new Date(),
         url: event.url || '' //path, dateVisited
     };
@@ -29,6 +30,7 @@ module.exports.logEvent = function logEvent(event, callback) {
     });
 
 };
+
 /*
 module.exports.sessionCreate = function sessionCreate(data, callback) {
 
@@ -52,7 +54,8 @@ module.exports.sessionCreate = function sessionCreate(data, callback) {
 
 };
 
-
+*/
+/*
 
 module.exports.sessionLogin = function sessionLogin(data) {
 

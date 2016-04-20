@@ -15,7 +15,7 @@ var routes = require('./server/config/routes');
 
 //invoke files
 var db = mongoose(config);
-console.log(db);
+//console.log(db);
 var app = express(app, config, db);
 var passport = passport();
 var routes = routes(app.app);

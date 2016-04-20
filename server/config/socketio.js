@@ -27,9 +27,6 @@ module.exports = function (app, io, mongoStore) {
         console.log("on connection");
         //on message event, which is passed when the website is first loaded
         socket.on('message', function (message) {
-            console.log('Received message: ' + message);
-            console.log(socket.handshake.address);
-            console.log(socket.handshake.headers.referer);
             //populate event data
             var event = {
                 ip: socket.handshake.address,
@@ -38,16 +35,15 @@ module.exports = function (app, io, mongoStore) {
             }
             //log the event in mongoDB
             log.logEvent(event, function(log){
-                console.log(log);
                 //send back to angular just created log(received in dashboard controller)
                 io.sockets.emit('log-update', log);
             });
 
         });
         socket.on('locationChange', function (path) {
-            console.log('Received path: ' + path);
-            console.log(socket.handshake.address);
-            console.log(socket.handshake.headers.referer);
+            //console.log('Received path: ' + path);
+            //console.log(socket.handshake.address);
+            //console.log(socket.handshake.headers.referer);
             var event = {
                 ip: socket.handshake.address,
                 event: 'location change',
@@ -65,10 +61,13 @@ module.exports = function (app, io, mongoStore) {
                 event: 'login',
                 user: user_id
             }
+            console.log(LOGIN);
+            console.log(event);
             log.logEvent(event, function(log){
                 console.log(log);
                 io.sockets.emit('login', log);
             });
+
         });
 
         socket.on('logout', function (user_id) {

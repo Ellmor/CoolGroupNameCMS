@@ -74,7 +74,7 @@
                             thead
                                 th Ip
                                 th Event
-                                th Session
+                                th User
                                 th Date
                                 th Url
                                 th Actions
@@ -82,7 +82,7 @@
                                 tr(ng-repeat="log in dashboard.Logs")
                                     td {{ log.client_ip }}
                                     td {{ log.event }}
-                                    td {{ log.session_id }}
+                                    td {{ log.user_id }}
                                     td {{ log.date | date:'medium' }}
                                     td {{ log.url }}
                                     td
