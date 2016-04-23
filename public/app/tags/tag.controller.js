@@ -60,9 +60,11 @@
         }
 
     }
+    /*
     $scope.sortOptions = [{value:"tag.name", text: "Sort by name"},
         {value:"tag.createDate", text: "Sort by date"}];
     $scope.sortOrder = $scope.sortOptions[0].value;
+    */
 
 
 })();

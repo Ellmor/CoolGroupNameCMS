@@ -33,9 +33,11 @@
         }
 
         $scope.createContent = function (content) {
-            contentService.createContent(content);
-            contentService.getContent()
-                .then(modelContent);
+            contentService.createContent(content).then(function(data){
+                $scope.Contents.push(data);
+            });
+            //contentService.getContent()
+                //.then(modelContent);
         }
 
         $scope.updateContent = function (content) {
