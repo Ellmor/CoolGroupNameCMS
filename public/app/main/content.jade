@@ -1,4 +1,7 @@
-.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 250px;")
+
+.panel.panel-default.col-md-6(ng-repeat="item in main.Content" style="height: 300px; overflow: hidden")
+
+
     .panel-body
         .pull-right
             i.fa.fa-heart(ng-show="item.meta.favs > 0") {{' ' + item.meta.favs + ' '}}

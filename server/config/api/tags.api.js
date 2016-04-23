@@ -46,7 +46,7 @@ router.get('/', function (req,res, next) {
     /*Get tags */
     router.get('/:tagid', function(req,res, next){
         var tagid = req.params.tagid;
-        Tag.findOne({_id:tagid}, function(err, results){res.json(results);});
+        Tags.findOne({_id:tagid}, function(err, results){res.json(results);});
     });
 
     /*Delete tags*/
@@ -54,7 +54,7 @@ router.get('/', function (req,res, next) {
 
         var tagid = req.params.tagid;
 
-        Tag.remove({_id:tagid}, function (err){
+        Tags.remove({_id:tagid}, function (err){
 
                 if(err) {
                     //if there is an error return error message

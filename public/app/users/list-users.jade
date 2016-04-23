@@ -9,7 +9,7 @@
         table.table.table-bordered(ng-model="Users", ng-init="getUsers()")
             thead
                 th Name
-                th Login Medium
+                th Email
                 th UserName
                 th Role
                 th Date
@@ -18,7 +18,7 @@
             tbody
                 tr( ng-repeat="user in Users | filter:searchText")
                     td {{user.firstName + "-" + user.lastName}}
-                    td {{user.provider}}
+                    td {{user.email}}
                     td {{user.username}}
                     td {{user.roles.join(', ')}}
                     td {{user.createDate | date:'medium'}}
@@ -39,10 +39,13 @@
             div.form-group
                 label(for="name") Username
                     input#name.form-control(type="text", name="name", placeholder="Name", ng-model="user.username", autofocus)
-
+            div.form-group
+                label(for="email") Email
+                    input.form-control(type="email", id="email", name="email", placeholder="Email", ng-model="user.email")
             div.form-group
                 label(for="password") Password
                     input.form-control(type="password", id="password", name="password", placeholder="Password", ng-model="user.password")
+
 
             div.form-group
                 label(for="firstName") First Name

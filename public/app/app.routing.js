@@ -140,6 +140,11 @@
                 controller: 'passwordResetController',
                 controllerAs: 'vm'
             })
+            .when('/login', {
+                templateUrl: '/partials/login/login',
+                controller: 'mvNavBarLoginCtrl',
+                controllerAs: 'vm'
+            })
             .otherwise('/');
     };
 
