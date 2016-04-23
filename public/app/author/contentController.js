@@ -22,9 +22,9 @@
         }
         var modelTags = function(data){
             $scope.Tags = data;
+            console.log(data);
         }
-        contentService.getTags()
-            .then(modelTags);
+
 
         var updateTagsSelected = function(){
         $scope.tagsSelected = contentService.getTagsSelected();
@@ -42,11 +42,17 @@
             contentService.getContents()
                 .then(modelContents);
         }
+        $scope.getTags = function(){
+            contentService.getTags()
+                .then(modelTags);
+
+        }
+
 
         $scope.getContent = function (contentid) {
             contentService.getContent(contentid)
                 .then(modelContent);
-            console.log(contentid);
+
         }
 
         $scope.createContent = function (content) {
