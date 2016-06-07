@@ -13,6 +13,7 @@
 
         //initial handshake
         socket.on('connect', function () {
+            console.log('SOCKET CONNECTED');
             socket.send('connect');
         });
 
@@ -31,6 +32,8 @@
 
         //template for sending info to server (emitting messages)
         var emit = function (eventName, data) {
+            console.log('io.service name: ' + eventName);
+            console.log('io.service data: ' + data);
             socket.emit(eventName, data);
         };
 

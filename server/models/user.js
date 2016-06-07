@@ -15,9 +15,7 @@ var userSchema = mongoose.Schema({
     createDate: { type: Date, default: Date.now },
     lastEditedDate: { type: Date, default: Date.now },
     resetPasswordToken: String,
-    resetPasswordExpires: Date,
-    online: Boolean,
-    sessions: [{ip: String, login: Date, logout: Date, pages: [{url: String, date: Date}]}]
+    resetPasswordExpires: Date
 });
 
 userSchema.methods = {

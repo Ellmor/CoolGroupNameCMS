@@ -40,8 +40,8 @@ module.exports = function (app, io, mongoStore) {
             });
 
         });
-        socket.on('locationChange', function (path) {
-            //console.log('Received path: ' + path);
+        socket.on('location-change', function (path) {
+            console.log('Received path: ' + path);
             //console.log(socket.handshake.address);
             //console.log(socket.handshake.headers.referer);
             var event = {
